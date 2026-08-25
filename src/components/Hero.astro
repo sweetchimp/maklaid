@@ -4,11 +4,20 @@ import { fade } from 'astro:transitions';
 import Badge from './design-system/Badge.astro';
 import Button from './design-system/Button.astro';
 
-interface Props {}
+const keywords = [
+  'Corporate & Commercial',
+  'Land & Property',
+  'Civil Litigation',
+  'Family Law',
+  'Criminal Law',
+  'Legal Advisory',
+  'Dispute Resolution',
+  'Contract Review',
+];
 ---
 
 <section
-  class="relative flex min-h-[70vh] items-center overflow-hidden bg-gradient-to-br from-navy-900 to-navy-950 text-white"
+  class="relative flex min-h-[70vh] flex-col overflow-hidden bg-gradient-to-br from-navy-900 to-navy-950 text-white"
 >
   <div
     class="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-scrim-navy blur-3xl"
@@ -27,22 +36,30 @@ interface Props {}
     <Scale size={320} stroke-width={1} />
   </div>
 
-  <div class="relative mx-auto flex max-w-7xl flex-col items-start gap-md px-sm py-xl md:px-lg">
-    <Badge variant="gold" size="sm">Full-Service Law Firm</Badge>
+  <div class="relative mx-auto flex flex-1 max-w-7xl flex-col items-start justify-center gap-md px-sm py-xl md:px-lg">
+    <div class="animate-fade-in [animation-delay:0ms]">
+      <Badge variant="gold" size="sm">Full-Service Law Firm</Badge>
+    </div>
     <h1
       transition:name="home-hero"
       transition:animate={fade({ duration: '0.35s' })}
-      class="max-w-3xl animate-slide-up font-heading text-h2 font-bold text-white md:text-h1"
+      class="max-w-3xl font-heading text-h2 font-bold text-white md:text-h1"
     >
-      Expert Legal Solutions for Business &amp; Family
+      <span class="inline-block animate-fade-in [animation-delay:100ms]">Expert</span>
+      <span class="inline-block animate-fade-in [animation-delay:200ms]">Legal</span>
+      <span class="inline-block animate-fade-in [animation-delay:300ms]">Solutions</span>
+      <span class="inline-block animate-fade-in [animation-delay:400ms]">for</span>
+      <span class="inline-block animate-fade-in [animation-delay:500ms]">Business</span>
+      <span class="inline-block animate-fade-in [animation-delay:600ms]">&amp;</span>
+      <span class="inline-block animate-fade-in [animation-delay:700ms]">Family</span>
     </h1>
     <p
-      class="max-w-xl animate-slide-up font-body text-body leading-relaxed text-navy-100 [animation-delay:100ms]"
+      class="max-w-xl animate-slide-up font-body text-body leading-relaxed text-navy-100 [animation-delay:300ms]"
     >
       From complex commercial disputes to deeply personal matters, MAKLAID pairs rigorous advocacy
       with clear, honest advice — so you always know where you stand and what comes next.
     </p>
-    <div class="flex animate-slide-up flex-col gap-sm sm:flex-row [animation-delay:200ms]">
+    <div class="flex animate-slide-up flex-col gap-sm sm:flex-row [animation-delay:500ms]">
       <Button href="/contact" variant="secondary" size="lg">Schedule Consultation</Button>
       <Button
         href="/services"
@@ -53,4 +70,34 @@ interface Props {}
       </Button>
     </div>
   </div>
+
+  <!-- Scrolling keywords ticker -->
+  <div class="relative border-t border-line-white bg-navy-950/50 py-sm overflow-hidden" aria-hidden="true">
+    <div class="marquee-track flex whitespace-nowrap">
+      <span class="marquee-content font-body text-small tracking-widest uppercase text-navy-200/60">
+        {keywords.map((kw) => (
+          <span>{kw}</span>
+          <span class="mx-md text-gold-500/40">●</span>
+        ))}
+      </span>
+      <span class="marquee-content font-body text-small tracking-widest uppercase text-navy-200/60">
+        {keywords.map((kw) => (
+          <span>{kw}</span>
+          <span class="mx-md text-gold-500/40">●</span>
+        ))}
+      </span>
+    </div>
+  </div>
 </section>
+
+<style>
+  .marquee-track {
+    animation: marquee 25s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-content {
+    display: inline-flex;
+    align-items: center;
+  }
+</style>

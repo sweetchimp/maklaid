@@ -117,6 +117,11 @@
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
   }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 }
 
 /* Hover-scale interaction token: scale 1 → 1.05 over 200ms */

@@ -42,22 +42,21 @@ const benefits = [
       Why Choose MAKLAID
     </h2>
 
-    <div class="flex flex-col gap-lg">
+    <div class="grid grid-cols-1 gap-md sm:grid-cols-2">
       {
         benefits.map(({ Icon, title, description }, i) => (
           <div
             class:list={[
-              'flex flex-col items-center gap-md rounded-2xl border border-neutral-200 bg-white/80 p-md backdrop-blur-sm transition-all duration-300 hover:border-gold-400 hover:shadow-md animate-slide-up md:flex-row md:gap-lg md:p-lg',
-              i % 2 === 1 && 'md:flex-row-reverse',
+              'flex flex-col items-center gap-md rounded-2xl border border-neutral-200 bg-white/80 p-lg backdrop-blur-sm transition-all duration-300 hover:border-gold-400 hover:shadow-lg animate-slide-up',
               `stagger-${i + 1}`,
             ]}
           >
-            <div class="flex shrink-0 items-center justify-center rounded-2xl bg-gold-100 p-md text-gold-700 md:w-56 md:self-stretch">
-              <Icon size={56} stroke-width={1.5} />
+            <div class="flex items-center justify-center rounded-2xl bg-gold-100 p-md text-gold-700">
+              <Icon size={48} stroke-width={1.5} />
             </div>
-            <div class="text-center md:max-w-xl md:text-left">
-              <h3 class="font-heading text-h3 font-semibold text-navy-900">{title}</h3>
-              <p class="mt-xs font-body text-body leading-relaxed text-neutral-500">{description}</p>
+            <div class="text-center">
+              <h3 class="font-heading text-body font-semibold text-navy-900">{title}</h3>
+              <p class="mt-xs font-body text-small leading-relaxed text-neutral-500">{description}</p>
             </div>
           </div>
         ))
