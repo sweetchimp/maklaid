@@ -10,10 +10,12 @@ interface Props extends HTMLAttributes<'div'> {
 const { variant = 'default', bordered = false, class: className, ...rest } = Astro.props;
 
 const base =
-  'flex flex-col overflow-hidden rounded-xl bg-white transition-all duration-200 ease-out shadow-sm';
-const border = bordered ? 'border border-neutral-200' : '';
+  'flex flex-col overflow-hidden rounded-xl bg-white transition-all duration-300 ease-out shadow-sm';
+const border = bordered ? 'border border-neutral-200 hover:border-gold-400' : '';
 const interactive =
-  variant === 'interactive' ? 'hover-scale -translate-y-1 cursor-pointer hover:shadow-xl' : '';
+  variant === 'interactive'
+    ? 'hover-scale -translate-y-1 cursor-pointer hover:shadow-xl hover:border-gold-400'
+    : '';
 ---
 
 <div class:list={[base, border, interactive, className]} {...rest}>

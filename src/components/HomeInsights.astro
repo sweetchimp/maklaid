@@ -40,10 +40,13 @@ const authorName = (slug: string) =>
 
     <div class="grid gap-md md:grid-cols-3">
       {
-        posts.map((post) => (
+        posts.map((post, index) => (
           <a
             href={`/insights/${post.id}`}
-            class="group h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
+            class:list={[
+              'group h-full rounded-xl animate-slide-up focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500',
+              `stagger-${index + 1}`,
+            ]}
           >
             <Card variant="interactive" bordered class="h-full">
               <img

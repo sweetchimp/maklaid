@@ -41,12 +41,15 @@ const featured = services;
 
     <div class="grid gap-md sm:grid-cols-2 lg:grid-cols-3">
       {
-        featured.map((service) => {
+        featured.map((service, index) => {
           const Icon = iconMap[service.icon];
           return (
             <a
               href={`/services#${service.slug}`}
-              class="group h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
+              class:list={[
+                'group h-full rounded-xl animate-slide-up focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500',
+                `stagger-${index + 1}`,
+              ]}
             >
               <Card variant="interactive" bordered class="h-full">
                 <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700">

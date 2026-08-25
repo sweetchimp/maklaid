@@ -22,13 +22,13 @@ const {
 } = Astro.props;
 
 const base =
-  'inline-flex cursor-pointer items-center justify-center gap-2 rounded-md font-body font-semibold whitespace-nowrap transition-all duration-200 ease-out select-none hover:scale-105 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500 disabled:pointer-events-none disabled:opacity-50';
+  'inline-flex cursor-pointer items-center justify-center gap-2 rounded-md font-body font-semibold whitespace-nowrap transition-all duration-300 ease-out select-none hover:-translate-y-0.5 hover:scale-105 active:scale-95 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500 disabled:pointer-events-none disabled:opacity-50';
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-navy-900 text-white shadow-sm hover:bg-navy-700 hover:shadow-md',
-  secondary: 'bg-gold-500 text-navy-950 shadow-sm hover:bg-gold-400 hover:shadow-md',
+  primary: 'bg-navy-900 text-white shadow-sm hover:bg-navy-700 hover:shadow-lg',
+  secondary: 'bg-gold-500 text-navy-950 shadow-sm hover:bg-gold-400 hover:shadow-lg',
   ghost:
-    'border border-neutral-300 bg-transparent text-neutral-800 hover:border-navy-300 hover:bg-navy-50 hover:text-navy-900',
+    'border border-neutral-300 bg-transparent text-neutral-800 hover:border-navy-300 hover:bg-navy-50 hover:text-navy-900 hover:shadow-sm',
 };
 
 const sizes: Record<ButtonSize, string> = {

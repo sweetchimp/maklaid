@@ -25,8 +25,8 @@ interface Props {}
 
     <div class="grid gap-md md:grid-cols-3">
       {
-        team.map((member) => (
-          <Card bordered class="group">
+        team.map((member, index) => (
+          <Card bordered class:list={['group animate-slide-up', `stagger-${index + 1}`]}>
             <div slot="image" class="relative h-72">
               <a href={`/team/${member.slug}`} class="block h-full" aria-label={`View profile of ${member.name}`}>
                 <img
