@@ -100,7 +100,7 @@ const proseClass =
 
     <img
       src={post.data.image}
-      alt=""
+      alt={post.data.title}
       width="800"
       height="450"
       loading="eager"
@@ -123,7 +123,7 @@ const proseClass =
             class="h-20 w-20 shrink-0 rounded-full object-cover"
           />
           <div>
-            <p class="font-body text-small font-semibold tracking-wide text-neutral-400 uppercase">
+            <p class="font-body text-small font-semibold tracking-wide text-neutral-500 uppercase">
               Written by
             </p>
             <h2 class="font-heading text-body font-semibold text-navy-900">{author.name}</h2>
@@ -150,7 +150,7 @@ const proseClass =
               href={`/insights/${item.id}`}
               class="group block h-full rounded-xl border border-neutral-200 bg-white p-md shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
             >
-              <p class="font-body text-small font-medium tracking-wide text-neutral-400 uppercase">
+              <p class="font-body text-small font-medium tracking-wide text-neutral-500 uppercase">
                 {formatDate(item.data.pubDate)}
               </p>
               <h3 class="mt-xs font-heading text-small font-semibold text-navy-900">

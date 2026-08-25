@@ -49,13 +49,13 @@ const authorName = (slug: string) =>
               <img
                 slot="image"
                 src={post.data.image}
-                alt=""
+                alt={post.data.title}
                 width="800"
                 height="450"
                 loading="lazy"
                 class="h-44 w-full object-cover"
               />
-              <p class="font-body text-small font-medium tracking-wide text-neutral-400 uppercase">
+              <p class="font-body text-small font-medium tracking-wide text-neutral-500 uppercase">
                 {formatDate(post.data.pubDate)}
               </p>
               <h3 class="mt-xs font-heading text-body font-semibold text-navy-900">{post.data.title}</h3>
