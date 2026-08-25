@@ -187,11 +187,10 @@ export const footerColumns: FooterColumn[] = [
     heading: 'Services',
     links: [
       { label: 'Corporate & Commercial', href: '/services#corporate-commercial' },
+      { label: 'Land & Property', href: '/services#land-property' },
+      { label: 'Civil Litigation', href: '/services#civil-litigation' },
       { label: 'Family Law', href: '/services#family-law' },
-      { label: 'Criminal Defense', href: '/services#criminal-defense' },
-      { label: 'Real Estate & Property', href: '/services#real-estate' },
-      { label: 'Immigration Law', href: '/services#immigration-law' },
-      { label: 'Litigation & Disputes', href: '/services#litigation' },
+      { label: 'Criminal Law', href: '/services#criminal-law' },
     ],
   },
   {
@@ -221,47 +220,41 @@ export interface ContactItem {
 }
 
 export const contactInfo: ContactItem[] = [
-  { icon: 'map-pin', label: 'Riverside Chambers, 12th Floor, Nairobi' },
-  { icon: 'phone', label: '+254 (0) 700 000 000', href: 'tel:+254700000000' },
-  { icon: 'mail', label: 'info@maklaid.co.ke', href: 'mailto:info@maklaid.co.ke' },
-  { icon: 'message-circle', label: 'WhatsApp Us', href: 'https://wa.me/254700000000?text=Hi%20MAKLAID%2C%20I%20need%20legal%20assistance' },
+  { icon: 'map-pin', label: '2nd Floor, Africourts, Buganda Road, Kampala' },
+  { icon: 'phone', label: '+256 757 401962', href: 'tel:+256757401962' },
+  { icon: 'mail', label: 'info@maklaidadvocates.com', href: 'mailto:info@maklaidadvocates.com' },
+  { icon: 'message-circle', label: 'WhatsApp Us', href: 'https://wa.me/256757401962?text=Hi%20MAKLAID%20Advocates%2C%20I%20need%20legal%20assistance' },
 ];
 
 export const practiceAreas: { title: string; description: string; tag: string }[] = [
   {
-    title: 'Corporate & Commercial',
+    title: 'Corporate & Commercial Law',
     description:
-      'Formation, governance, M&A and commercial contracts that keep your business protected at every stage.',
+      'Expert legal counsel for business transactions, contracts, and corporate governance.',
     tag: 'Business',
+  },
+  {
+    title: 'Land & Property Law',
+    description:
+      'Comprehensive legal services for property transactions, land disputes, and conveyancing.',
+    tag: 'Property',
+  },
+  {
+    title: 'Civil Litigation & Dispute Resolution',
+    description:
+      'Professional representation in civil disputes and alternative dispute resolution.',
+    tag: 'Advocacy',
   },
   {
     title: 'Family Law',
     description:
-      'Compassionate, discreet representation in divorce, custody and matrimonial property matters.',
+      'Sensitive and expert guidance in matrimonial, divorce, and family matters.',
     tag: 'Personal',
   },
   {
-    title: 'Criminal Defense',
+    title: 'Criminal Law & Proceedings',
     description:
-      'Vigorous defense of your rights and freedom — from investigation through trial and appeal.',
+      'Dedicated defense and prosecution services in criminal matters.',
     tag: 'Defense',
-  },
-  {
-    title: 'Real Estate & Property',
-    description:
-      'Transactions, land disputes, leases and conveyancing handled with precision and speed.',
-    tag: 'Property',
-  },
-  {
-    title: 'Immigration Law',
-    description:
-      'Visas, permits, residency and citizenship — clear guidance through every requirement.',
-    tag: 'Immigration',
-  },
-  {
-    title: 'Litigation & Dispute Resolution',
-    description:
-      'Strategic advocacy in court and at the negotiation table to resolve conflicts decisively.',
-    tag: 'Advocacy',
   },
 ];

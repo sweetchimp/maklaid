@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /design-system
 
-Sitemap: https://maklaidadvoctes.com/sitemap-index.xml
+Sitemap: https://maklaidadvocates.com/sitemap-index.xml

@@ -1,13 +1,10 @@
 ---
 import { fade } from 'astro:transitions';
+import { firmInfo } from '../data/firm';
 
 interface Props {}
 
-const stats = [
-  { value: '25+', label: 'Years in Business' },
-  { value: '500+', label: 'Cases Won' },
-  { value: '98%', label: 'Happy Clients' },
-];
+const stats = firmInfo.stats;
 ---
 
 <section id="about" class="bg-neutral-50 py-lg md:py-[5rem]">
@@ -22,13 +19,13 @@ const stats = [
           About MAKLAID
         </h2>
         <p class="mt-md font-body text-body leading-relaxed text-neutral-500">
-          MAKLAID is a full-service Kenyan law firm built on a simple conviction: excellent legal
-          counsel should be rigorous, responsive and human. Our advocates combine deep technical
-          mastery with the practical judgment that only years in the field deliver.
+          MAKLAID ADVOCATES is a dynamic and innovative law firm based in Uganda, East Africa,
+          founded in 2024. We pride ourselves on delivering expert legal counsel and
+          representation to our clients across the region.
         </p>
         <p class="mt-sm font-body text-body leading-relaxed text-neutral-500">
-          From multinational corporations to families navigating life's hardest moments, we
-          measure ourselves by one standard — outcomes our clients can build on.
+          From individuals and small businesses to large corporations and organizations,
+          we measure ourselves by one standard — outcomes our clients can build on.
         </p>
       </div>
 

@@ -6,44 +6,41 @@ import Badge from '../components/design-system/Badge.astro';
 import CtaSection from '../components/CtaSection.astro';
 import { Scale, ShieldCheck, HeartHandshake } from 'lucide-react';
 import { team } from '../data/team';
+import { firmInfo } from '../data/firm';
 
 interface Props {}
 
 const values = [
   {
     Icon: ShieldCheck,
-    title: 'Integrity',
-    description:
-      'Honest advice even when it costs us work — we decline matters we cannot advance and say so plainly.',
+    title: firmInfo.values[1].title,
+    description: firmInfo.values[1].description,
   },
   {
     Icon: Scale,
-    title: 'Excellence',
-    description:
-      'Every file gets partner-level attention: rigorous analysis, precise drafting and relentless preparation.',
+    title: firmInfo.values[2].title,
+    description: firmInfo.values[2].description,
   },
   {
     Icon: HeartHandshake,
-    title: 'Empathy',
-    description:
-      'Behind every matter is a person or a business under pressure. We advise humans first, lawyers second.',
+    title: firmInfo.values[0].title,
+    description: firmInfo.values[0].description,
   },
 ];
 
 const milestones = [
-  { year: '2018', text: 'MAKLAID founded in Nairobi with a two-partner corporate practice.' },
-  { year: '2020', text: 'Dispute resolution practice launched; first 100 client mandates completed.' },
-  { year: '2023', text: 'Property and immigration teams established — full-service coverage achieved.' },
-  { year: '2026', text: '500th matter resolved; new chambers opened at Riverside Drive.' },
+  { year: '2024', text: 'MAKLAID ADVOCATES founded in Kampala, Uganda — a new era of expert legal counsel for East Africa.' },
+  { year: '2024', text: 'Corporate, property, litigation, family and criminal law practices established from day one.' },
+  { year: '2025', text: 'Expanding our client base across Uganda and the East African region.' },
 ];
 ---
 
 <PageLayout
-  title="About MAKLAID"
+  title="About MAKLAID ADVOCATES"
   eyebrow="Our Firm"
-  description="The story, values and people behind MAKLAID — a full-service Kenyan law firm built on integrity, excellence and empathy."
+  description="The story, values and people behind MAKLAID ADVOCATES — a dynamic Ugandan law firm built on respect, integrity and leadership."
   path="/about"
-  keywords="about maklaid, law firm history, nairobi law firm, kenyan lawyers, legal team"
+  keywords="about maklaid advocates, law firm history, kampala law firm, ugandan lawyers, legal team uganda"
 >
   <div slot="lede">
     <p class="font-body text-body leading-relaxed text-neutral-500">
@@ -55,27 +52,18 @@ const milestones = [
   <section class="max-w-3xl">
     <h2 class="font-heading text-h3 font-semibold text-navy-900">Our Story</h2>
     <p class="mt-sm font-body text-body leading-relaxed text-neutral-500">
-      MAKLAID began in 2018 with two advocates, one borrowed boardroom and a frustration shared by
-      many clients: legal advice that was technically sound but commercially deaf. The founding
-      partners set out to build the firm they would have wanted to hire — one that answers calls,
-      explains options without jargon, and treats a small business dispute with the same rigour as
-      a cross-border acquisition.
+      {firmInfo.fullAbout}
     </p>
     <p class="mt-sm font-body text-body leading-relaxed text-neutral-500">
-      Word travelled. What started as a corporate boutique grew organically into a full-service
-      firm as clients asked us to stand beside them in courtrooms, at the lands registry, before
-      immigration authorities and around family tables. Each practice area was added only when we
-      could staff it with specialists — never to chase a market.
-    </p>
-    <p class="mt-sm font-body text-body leading-relaxed text-neutral-500">
-      Today MAKLAID advises listed companies, SMEs, families and individuals across six core
-      practices from our chambers at Riverside Drive. The name on the door has grown; the founding
-      standard has not changed.
+      From multinational corporations to families navigating life's hardest moments, we
+      measure ourselves by one standard — outcomes our clients can build on. Our diverse
+      client base ranges from individuals and small businesses to large corporations and
+      organizations across Uganda and the East African region.
     </p>
   </section>
 
   <section class="mt-xl">
-    <h2 class="font-heading text-h3 font-semibold text-navy-900">Mission &amp; Values</h2>
+    <h2 class="font-heading text-h3 font-semibold text-navy-900">Core Values</h2>
     <div class="mt-md grid gap-md sm:grid-cols-2 lg:grid-cols-3">
       {
         values.map(({ Icon, title, description }) => (
@@ -93,7 +81,7 @@ const milestones = [
 
   <section class="mt-xl">
     <div class="flex flex-wrap items-end justify-between gap-sm">
-      <h2 class="font-heading text-h3 font-semibold text-navy-900">Leadership</h2>
+      <h2 class="font-heading text-h3 font-semibold text-navy-900">Our Team</h2>
       <Button href="/team" variant="ghost" size="sm">Meet the Full Team</Button>
     </div>
     <div class="mt-md grid gap-md sm:grid-cols-2 lg:grid-cols-3">

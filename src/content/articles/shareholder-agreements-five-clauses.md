@@ -4,7 +4,7 @@ excerpt: "Deadlocks, exits and valuation — the provisions that decide whether 
 pubDate: 2026-06-14
 author: am-maklaid
 image: "/images/insights/shareholder-agreements.svg"
-tags: ["Corporate", "Startups"]
+tags: ["Corporate", "Startups", "Uganda"]
 ---
 
 Most shareholder disputes we see were drafted into existence years earlier — by silence. The companies that weather founder conflict do so because someone wrote down the rules while everyone was still friendly. Five clauses matter most.

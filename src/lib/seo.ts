@@ -5,7 +5,7 @@
  * canonical link and keywords meta for every page.
  */
 
-const SITE_URL = 'https://maklaidadvoctes.com';
+const SITE_URL = 'https://maklaidadvocates.com';
 const DEFAULT_IMAGE = '/images/maklaid-logo.jpg';
 const SITE_NAME = 'MAKLAID';
 

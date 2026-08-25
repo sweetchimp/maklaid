@@ -28,7 +28,7 @@ const related = services.filter((item) => item.slug !== service.slug).slice(0, 3
   eyebrow={service.tag}
   description={service.overview[0]}
   path={`/services/${service.slug}`}
-  keywords={`${service.title}, ${service.tag.toLowerCase()}, kenya, nairobi, maklaid`}
+  keywords={`${service.title}, ${service.tag.toLowerCase()}, uganda, kampala, maklaid advocates`}
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(serviceSchema(service))} />
@@ -122,11 +122,11 @@ const related = services.filter((item) => item.slug !== service.slug).slice(0, 3
         href="/contact"
       />
       <div class="mx-auto mt-md flex max-w-7xl flex-wrap items-center justify-center gap-md px-sm md:px-lg">
-        <a href="tel:+254700000000" class="inline-flex items-center gap-xs font-body text-small font-medium text-navy-100 hover:text-gold-400">
-          <Phone size={16} /> +254 (0) 700 000 000
+        <a href="tel:+256757401962" class="inline-flex items-center gap-xs font-body text-small font-medium text-navy-100 hover:text-gold-400">
+          <Phone size={16} /> +256 757 401962
         </a>
-        <a href="mailto:info@maklaid.co.ke" class="inline-flex items-center gap-xs font-body text-small font-medium text-navy-100 hover:text-gold-400">
-          <Mail size={16} /> info@maklaid.co.ke
+        <a href="mailto:info@maklaidadvocates.com" class="inline-flex items-center gap-xs font-body text-small font-medium text-navy-100 hover:text-gold-400">
+          <Mail size={16} /> info@maklaidadvocates.com
         </a>
       </div>
     </section>

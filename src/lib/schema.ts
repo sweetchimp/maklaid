@@ -1,12 +1,12 @@
 /**
- * MAKLAID Schema.org — JSON-LD structured data helpers.
+ * MAKLAID ADVOCATES Schema.org — JSON-LD structured data helpers.
  *
  * Each function returns a plain object that can be serialised
  * with JSON.stringify and injected via <script type="application/ld+json">.
  */
 
-const SITE_URL = 'https://maklaidadvoctes.com';
-const ORG_NAME = 'MAKLAID';
+const SITE_URL = 'https://maklaidadvocates.com';
+const ORG_NAME = 'MAKLAID ADVOCATES';
 const LOGO = `${SITE_URL}/images/maklaid-logo.jpg`;
 
 /* -------------------------------------------------------------------------- */
@@ -21,23 +21,23 @@ export function organizationSchema() {
     url: SITE_URL,
     logo: LOGO,
     description:
-      'MAKLAID is a full-service law firm delivering trusted counsel and results-driven representation across corporate, family, criminal and property matters in Kenya.',
+      'MAKLAID ADVOCATES is a dynamic law firm based in Uganda delivering expert legal counsel and representation across corporate, property, family and criminal matters.',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Riverside Chambers, 12th Floor, Riverside Drive',
-      addressLocality: 'Nairobi',
-      addressCountry: 'KE',
+      streetAddress: '2nd Floor, Left Wing, Africourts, Plot 69, Buganda Road',
+      addressLocality: 'Kampala',
+      addressCountry: 'UG',
     },
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: '+254-700-000-000',
+        telephone: '+256-757-401962',
         contactType: 'customer service',
         availableLanguage: 'English',
       },
       {
         '@type': 'ContactPoint',
-        email: 'info@maklaid.co.ke',
+        email: 'info@maklaidadvocates.com',
         contactType: 'customer service',
       },
     ],
@@ -46,14 +46,8 @@ export function organizationSchema() {
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '08:30',
-        closes: '17:30',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: 'Saturday',
-        opens: '09:00',
-        closes: '13:00',
+        opens: '08:00',
+        closes: '17:00',
       },
     ],
   };
@@ -81,7 +75,7 @@ export function serviceSchema(service: {
     },
     areaServed: {
       '@type': 'Country',
-      name: 'Kenya',
+      name: 'Uganda',
     },
   };
 }

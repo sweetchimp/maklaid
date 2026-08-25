@@ -5,7 +5,6 @@ import {
   HeartHandshake,
   Shield,
   Home,
-  Globe,
   Scale,
   ArrowRight,
 } from 'lucide-react';
@@ -19,11 +18,10 @@ const iconMap: Record<ServiceIconName, typeof Briefcase> = {
   'heart-handshake': HeartHandshake,
   shield: Shield,
   home: Home,
-  globe: Globe,
-  scale: Scale,
+  scales: Scale,
 };
 
-const featured = services.slice(0, 4);
+const featured = services;
 ---
 
 <section id="practice-areas" class="py-lg md:py-[5rem]">
@@ -41,7 +39,7 @@ const featured = services.slice(0, 4);
       </p>
     </div>
 
-    <div class="grid gap-md sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid gap-md sm:grid-cols-2 lg:grid-cols-3">
       {
         featured.map((service) => {
           const Icon = iconMap[service.icon];
