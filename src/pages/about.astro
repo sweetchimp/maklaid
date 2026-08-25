@@ -1,0 +1,142 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Card from '../components/design-system/Card.astro';
+import Button from '../components/design-system/Button.astro';
+import Badge from '../components/design-system/Badge.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { Scale, ShieldCheck, HeartHandshake } from 'lucide-react';
+import { team } from '../data/team';
+
+interface Props {}
+
+const values = [
+  {
+    Icon: ShieldCheck,
+    title: 'Integrity',
+    description:
+      'Honest advice even when it costs us work — we decline matters we cannot advance and say so plainly.',
+  },
+  {
+    Icon: Scale,
+    title: 'Excellence',
+    description:
+      'Every file gets partner-level attention: rigorous analysis, precise drafting and relentless preparation.',
+  },
+  {
+    Icon: HeartHandshake,
+    title: 'Empathy',
+    description:
+      'Behind every matter is a person or a business under pressure. We advise humans first, lawyers second.',
+  },
+];
+
+const milestones = [
+  { year: '2018', text: 'MAKLAID founded in Nairobi with a two-partner corporate practice.' },
+  { year: '2020', text: 'Dispute resolution practice launched; first 100 client mandates completed.' },
+  { year: '2023', text: 'Property and immigration teams established — full-service coverage achieved.' },
+  { year: '2026', text: '500th matter resolved; new chambers opened at Riverside Drive.' },
+];
+---
+
+<PageLayout
+  title="About MAKLAID"
+  eyebrow="Our Firm"
+  description="The story, values and people behind MAKLAID — a full-service Kenyan law firm built on integrity, excellence and empathy."
+  path="/about"
+  keywords="about maklaid, law firm history, nairobi law firm, kenyan lawyers, legal team"
+>
+  <div slot="lede">
+    <p class="font-body text-body leading-relaxed text-neutral-500">
+      A firm built on a simple conviction: excellent legal counsel should be rigorous, responsive
+      and human.
+    </p>
+  </div>
+
+  <section class="max-w-3xl">
+    <h2 class="font-heading text-h3 font-semibold text-navy-900">Our Story</h2>
+    <p class="mt-sm font-body text-body leading-relaxed text-neutral-500">
+      MAKLAID began in 2018 with two advocates, one borrowed boardroom and a frustration shared by
+      many clients: legal advice that was technically sound but commercially deaf. The founding
+      partners set out to build the firm they would have wanted to hire — one that answers calls,
+      explains options without jargon, and treats a small business dispute with the same rigour as
+      a cross-border acquisition.
+    </p>
+    <p class="mt-sm font-body text-body leading-relaxed text-neutral-500">
+      Word travelled. What started as a corporate boutique grew organically into a full-service
+      firm as clients asked us to stand beside them in courtrooms, at the lands registry, before
+      immigration authorities and around family tables. Each practice area was added only when we
+      could staff it with specialists — never to chase a market.
+    </p>
+    <p class="mt-sm font-body text-body leading-relaxed text-neutral-500">
+      Today MAKLAID advises listed companies, SMEs, families and individuals across six core
+      practices from our chambers at Riverside Drive. The name on the door has grown; the founding
+      standard has not changed.
+    </p>
+  </section>
+
+  <section class="mt-xl">
+    <h2 class="font-heading text-h3 font-semibold text-navy-900">Mission &amp; Values</h2>
+    <div class="mt-md grid gap-md sm:grid-cols-2 lg:grid-cols-3">
+      {
+        values.map(({ Icon, title, description }) => (
+          <Card bordered>
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700">
+              <Icon size={24} />
+            </span>
+            <h3 class="mt-sm font-heading text-body font-semibold text-navy-900">{title}</h3>
+            <p class="mt-xs font-body text-small leading-relaxed text-neutral-500">{description}</p>
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-xl">
+    <div class="flex flex-wrap items-end justify-between gap-sm">
+      <h2 class="font-heading text-h3 font-semibold text-navy-900">Leadership</h2>
+      <Button href="/team" variant="ghost" size="sm">Meet the Full Team</Button>
+    </div>
+    <div class="mt-md grid gap-md sm:grid-cols-2 lg:grid-cols-3">
+      {
+        team.map((member) => (
+          <a
+            href={`/team/${member.slug}`}
+            class="group flex items-center gap-md rounded-xl border border-neutral-200 bg-white p-sm shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
+          >
+            <img
+              src={member.photo}
+              alt={`Portrait of ${member.name}`}
+              width="480"
+              height="600"
+              loading="lazy"
+              class="h-16 w-16 shrink-0 rounded-full object-cover"
+            />
+            <div>
+              <h3 class="font-heading text-body font-semibold text-navy-900">{member.name}</h3>
+              <p class="font-body text-small text-neutral-500">{member.title}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-xl">
+    <h2 class="font-heading text-h3 font-semibold text-navy-900">Milestones</h2>
+    <ol class="mt-md flex flex-col gap-xs border-l-2 border-navy-100 pl-lg">
+      {
+        milestones.map(({ year, text }) => (
+          <li class="relative">
+            <span class="absolute -left-[calc(2rem+7px)] top-1 h-3.5 w-3.5 rounded-full border-2 border-gold-500 bg-white" />
+            <Badge variant="gold" size="sm">{year}</Badge>
+            <p class="mt-xs font-body text-body leading-relaxed text-neutral-500">{text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <div class="mt-xl">
+    <CtaSection variant="navy" headline="Ready to work with us?" subtext="Your first consultation is free." label="Schedule Consultation" href="/contact" />
+  </div>
+</PageLayout>

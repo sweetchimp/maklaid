@@ -1,0 +1,33 @@
+---
+import { MessageCircle } from 'lucide-react';
+import { contactInfo } from '../data/contact';
+
+interface Props {
+  size?: 'md' | 'lg';
+  class?: string;
+}
+
+const { size = 'md', class: className } = Astro.props;
+
+const whatsappUrl = `https://wa.me/${contactInfo.phoneLink}?text=${encodeURIComponent(contactInfo.whatsappMessage)}`;
+
+const sizeClasses = {
+  md: 'px-5 py-2.5 text-body',
+  lg: 'px-8 py-3.5 text-body',
+};
+---
+
+<a
+  href={whatsappUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={[
+    'inline-flex cursor-pointer items-center justify-center gap-2 rounded-md font-body font-semibold whitespace-nowrap transition-all duration-200 ease-out select-none hover:scale-105 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500',
+    'bg-[#25D366] text-white shadow-sm hover:bg-[#20BD5A] hover:shadow-md',
+    sizeClasses[size],
+    className,
+  ]}
+>
+  <MessageCircle size={size === 'lg' ? 20 : 18} />
+  <span>Chat on WhatsApp</span>
+</a>

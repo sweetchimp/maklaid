@@ -1,0 +1,56 @@
+---
+import { Scale } from 'lucide-react';
+import { fade } from 'astro:transitions';
+import Badge from './design-system/Badge.astro';
+import Button from './design-system/Button.astro';
+
+interface Props {}
+---
+
+<section
+  class="relative flex min-h-[70vh] items-center overflow-hidden bg-gradient-to-br from-navy-900 to-navy-950 text-white"
+>
+  <div
+    class="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-scrim-navy blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute bottom-0 -left-24 h-80 w-80 rounded-full bg-scrim-navy blur-3xl opacity-70"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute top-1/2 right-8 hidden -translate-y-1/2 opacity-10 xl:block"
+    aria-hidden="true"
+  >
+    <Scale size={320} stroke-width={1} />
+  </div>
+
+  <div class="relative mx-auto flex max-w-7xl flex-col items-start gap-md px-sm py-xl md:px-lg">
+    <Badge variant="gold" size="sm">Full-Service Law Firm</Badge>
+    <h1
+      transition:name="home-hero"
+      transition:animate={fade({ duration: '0.35s' })}
+      class="max-w-3xl animate-slide-up font-heading text-h2 font-bold text-white md:text-h1"
+    >
+      Expert Legal Solutions for Business &amp; Family
+    </h1>
+    <p
+      class="max-w-xl animate-slide-up font-body text-body leading-relaxed text-navy-100 [animation-delay:100ms]"
+    >
+      From complex commercial disputes to deeply personal matters, MAKLAID pairs rigorous advocacy
+      with clear, honest advice — so you always know where you stand and what comes next.
+    </p>
+    <div class="flex animate-slide-up flex-col gap-sm sm:flex-row [animation-delay:200ms]">
+      <Button href="/contact" variant="secondary" size="lg">Schedule Consultation</Button>
+      <Button
+        href="/services"
+        size="lg"
+        class="border border-line-white-strong bg-transparent text-white hover:bg-hover-white-strong"
+      >
+        Learn More
+      </Button>
+    </div>
+  </div>
+</section>

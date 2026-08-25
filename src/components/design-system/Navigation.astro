@@ -1,0 +1,89 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+import { Menu, X } from 'lucide-react';
+import { navLinks } from '../../lib/theme';
+
+interface Props extends HTMLAttributes<'header'> {}
+---
+
+<header class="sticky top-0 z-50 animate-fade-in border-b border-line-white bg-navy-900 text-white">
+  <nav
+    class="mx-auto flex max-w-7xl items-center justify-between px-sm py-xs md:px-lg"
+    aria-label="Main navigation"
+  >
+    <a href="/" class="hover-scale flex items-center" aria-label="MAKLAID home">
+      <Logo class="h-11 w-auto md:h-12" />
+    </a>
+
+    <ul class="hidden items-center gap-md lg:flex">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="rounded-md px-2 py-1 font-body text-small font-medium text-navy-100 transition-colors duration-200 hover:text-gold-400"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="hidden lg:block">
+      <Button href="/#contact" variant="secondary" size="sm">Book Consultation</Button>
+    </div>
+
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      class="inline-flex cursor-pointer items-center justify-center rounded-md p-2 text-navy-100 transition-colors duration-200 hover:text-gold-400 focus-visible:outline-2 focus-visible:outline-gold-500 lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Toggle navigation menu"
+    >
+      <span id="icon-open" class="block"><Menu size={24} /></span>
+      <span id="icon-close" class="hidden"><X size={24} /></span>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden border-t border-line-white bg-navy-950 lg:hidden">
+    <ul class="mx-auto flex max-w-7xl flex-col gap-xs px-sm py-md">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="block rounded-md px-2 py-2 font-body text-body font-medium text-navy-100 transition-colors duration-200 hover:bg-hover-white hover:text-gold-400"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-xs">
+        <Button href="/#contact" variant="secondary" size="md" class="w-full">
+          Book Consultation
+        </Button>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('icon-open');
+  const closeIcon = document.getElementById('icon-close');
+
+  toggle?.addEventListener('click', () => {
+    if (!menu || !toggle) return;
+    const willOpen = menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(willOpen));
+    openIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  });
+</script>

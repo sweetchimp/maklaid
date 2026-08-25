@@ -1,0 +1,29 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+interface Props {}
+
+const updated = 'August 24, 2026';
+---
+
+<PageLayout
+  title="Terms of Service"
+  eyebrow="Legal"
+  description="The terms governing use of the MAKLAID website and its content."
+  path="/terms"
+  variant="light"
+>
+  <div class="flex max-w-3xl flex-col gap-md font-body text-body leading-relaxed text-neutral-600">
+    <p class="text-neutral-400">Last updated: {updated}</p>
+    <p>
+      The content of this website is provided for general information only and does not
+      constitute legal advice or create an advocate–client relationship. You should seek
+      formal legal counsel before acting on any information contained here.
+    </p>
+    <p>
+      All materials on this site are the property of MAKLAID Law Firm and may not be
+      reproduced without written permission. Use of this site is governed by the laws of
+      Kenya.
+    </p>
+  </div>
+</PageLayout>

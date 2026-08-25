@@ -1,0 +1,75 @@
+---
+import { fade } from 'astro:transitions';
+import {
+  Briefcase,
+  HeartHandshake,
+  Shield,
+  Home,
+  Globe,
+  Scale,
+  ArrowRight,
+} from 'lucide-react';
+import Card from './design-system/Card.astro';
+import { services, type ServiceIconName } from '../data/services';
+
+interface Props {}
+
+const iconMap: Record<ServiceIconName, typeof Briefcase> = {
+  briefcase: Briefcase,
+  'heart-handshake': HeartHandshake,
+  shield: Shield,
+  home: Home,
+  globe: Globe,
+  scale: Scale,
+};
+
+const featured = services.slice(0, 4);
+---
+
+<section id="practice-areas" class="py-lg md:py-[5rem]">
+  <div class="mx-auto max-w-7xl px-sm md:px-lg">
+    <div class="mx-auto mb-lg max-w-2xl text-center">
+      <h2
+        transition:name="home-services"
+        transition:animate={fade({ duration: '0.35s' })}
+        class="font-heading text-h2 font-bold text-navy-900"
+      >
+        Our Practice Areas
+      </h2>
+      <p class="mt-xs font-body text-body text-neutral-500">
+        Focused counsel across the areas that matter most to you and your business.
+      </p>
+    </div>
+
+    <div class="grid gap-md sm:grid-cols-2 lg:grid-cols-4">
+      {
+        featured.map((service) => {
+          const Icon = iconMap[service.icon];
+          return (
+            <a
+              href={`/services#${service.slug}`}
+              class="group h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
+            >
+              <Card variant="interactive" bordered class="h-full">
+                <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700">
+                  <Icon size={24} />
+                </span>
+                <h3 class="font-heading text-body font-semibold text-navy-900">{service.title}</h3>
+                <p class="font-body text-small leading-relaxed text-neutral-500">
+                  {service.description}
+                </p>
+                <span class="mt-auto inline-flex items-center gap-1 pt-sm font-body text-small font-semibold text-gold-600 transition-colors duration-200 group-hover:text-gold-500">
+                  Learn more
+                  <ArrowRight
+                    size={16}
+                    className="transition-transform duration-200 group-hover:translate-x-0.5"
+                  />
+                </span>
+              </Card>
+            </a>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

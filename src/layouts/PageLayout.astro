@@ -1,0 +1,78 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Badge from '../components/design-system/Badge.astro';
+
+interface Props {
+  /** Page <title> */
+  title: string;
+  /** Meta description */
+  description?: string;
+  /** Small uppercase eyebrow rendered as a gold Badge above the heading */
+  eyebrow?: string;
+  /** Hero color scheme */
+  variant?: 'navy' | 'light';
+  /**
+   * Renders no built-in hero band or max-width container — the default
+   * slot flows full-width. Used by the homepage's own section stack.
+   */
+  bare?: boolean;
+  /** URL path for canonical + OpenGraph */
+  path?: string;
+  /** OG image override */
+  image?: string;
+  /** OG type */
+  type?: 'website' | 'article';
+  /** Comma-separated keywords */
+  keywords?: string;
+}
+
+const {
+  title,
+  description,
+  eyebrow,
+  variant = 'navy',
+  bare = false,
+  path,
+  image,
+  type,
+  keywords,
+} = Astro.props;
+
+const heroClass =
+  variant === 'navy'
+    ? 'bg-navy-900 text-white'
+    : 'border-b border-neutral-200 bg-neutral-50 text-neutral-900';
+const headingClass = variant === 'navy' ? 'text-white' : 'text-navy-900';
+---
+
+<BaseLayout title={title} description={description} path={path} image={image} type={type} keywords={keywords}>
+  {
+    !bare && (
+      <section class:list={['animate-fade-in', heroClass]}>
+        <div class="mx-auto flex max-w-7xl flex-col items-start gap-sm px-sm py-xl md:px-lg md:py-[5.5rem]">
+          {eyebrow && <Badge variant="gold" size="sm">{eyebrow}</Badge>}
+          <h1 class:list={['font-heading text-h2 font-bold md:text-h1', headingClass]}>
+            {title}
+          </h1>
+          {
+            Astro.slots.has('lede') && (
+              <div class="max-w-2xl">
+                <slot name="lede" />
+              </div>
+            )
+          }
+        </div>
+      </section>
+    )
+  }
+
+  {
+    bare ? (
+      <slot />
+    ) : (
+      <div class="mx-auto max-w-7xl px-sm py-xl md:px-lg">
+        <slot />
+      </div>
+    )
+  }
+</BaseLayout>

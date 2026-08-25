@@ -1,0 +1,37 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { CardVariant } from '../../lib/theme';
+
+interface Props extends HTMLAttributes<'div'> {
+  variant?: CardVariant;
+  bordered?: boolean;
+}
+
+const { variant = 'default', bordered = false, class: className, ...rest } = Astro.props;
+
+const base =
+  'flex flex-col overflow-hidden rounded-xl bg-white transition-all duration-200 ease-out shadow-sm';
+const border = bordered ? 'border border-neutral-200' : '';
+const interactive =
+  variant === 'interactive' ? 'hover-scale -translate-y-1 cursor-pointer hover:shadow-xl' : '';
+---
+
+<div class:list={[base, border, interactive, className]} {...rest}>
+  {
+    Astro.slots.has('image') && (
+      <div class="overflow-hidden">
+        <slot name="image" />
+      </div>
+    )
+  }
+  <div class="flex flex-1 flex-col gap-sm p-md">
+    <slot />
+    {
+      Astro.slots.has('footer') && (
+        <div class="mt-auto pt-sm">
+          <slot name="footer" />
+        </div>
+      )
+    }
+  </div>
+</div>

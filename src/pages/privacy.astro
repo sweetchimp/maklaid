@@ -1,0 +1,32 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+interface Props {}
+
+const updated = 'August 24, 2026';
+---
+
+<PageLayout
+  title="Privacy Policy"
+  eyebrow="Legal"
+  description="How MAKLAID collects, uses and protects your personal information."
+  path="/privacy"
+  variant="light"
+>
+  <div class="prose-sm flex max-w-3xl flex-col gap-md font-body text-body leading-relaxed text-neutral-600">
+    <p class="text-neutral-400">Last updated: {updated}</p>
+    <p>
+      MAKLAID Law Firm ("we", "us") respects your privacy. Any personal information you share
+      with us — through this website, email or in consultation — is used solely to respond to
+      your enquiry and to provide legal services you request.
+    </p>
+    <p>
+      We do not sell, rent or trade your personal data. Communications between you and the firm
+      may be protected by legal professional privilege; we safeguard them accordingly.
+    </p>
+    <p>
+      This website does not use tracking cookies. Questions about this policy may be directed
+      to info@maklaid.co.ke.
+    </p>
+  </div>
+</PageLayout>

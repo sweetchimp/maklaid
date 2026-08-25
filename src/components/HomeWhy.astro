@@ -1,0 +1,73 @@
+---
+import { fade } from 'astro:transitions';
+import { GraduationCap, HeartHandshake, Trophy, ShieldCheck } from 'lucide-react';
+
+interface Props {}
+
+const benefits = [
+  {
+    Icon: GraduationCap,
+    title: 'Deep Expertise',
+    description:
+      'Specialist advocates across six core practices, backed by continuous training and sector insight.',
+  },
+  {
+    Icon: HeartHandshake,
+    title: 'Client-Focused',
+    description:
+      'Plain-language advice, transparent fees and a dedicated point of contact on every matter.',
+  },
+  {
+    Icon: Trophy,
+    title: 'Proven Results',
+    description:
+      'Hundreds of resolved disputes, transactions and defenses — judged by outcomes, not hours billed.',
+  },
+  {
+    Icon: ShieldCheck,
+    title: 'Trusted Counsel',
+    description:
+      'Confidentiality and integrity as standard, with a client base that returns and refers.',
+  },
+];
+---
+
+<section id="why-maklaid" class="dot-grid bg-neutral-50 py-lg md:py-[5rem]">
+  <div class="mx-auto max-w-7xl px-sm md:px-lg">
+    <h2
+      transition:name="home-why"
+      transition:animate={fade({ duration: '0.35s' })}
+      class="mb-lg text-center font-heading text-h2 font-bold text-navy-900"
+    >
+      Why Choose MAKLAID
+    </h2>
+
+    <div class="flex flex-col gap-lg">
+      {
+        benefits.map(({ Icon, title, description }, i) => (
+          <div
+            class:list={[
+              'flex flex-col items-center gap-md rounded-2xl border border-neutral-200 bg-white/80 p-md backdrop-blur-sm md:flex-row md:gap-lg md:p-lg',
+              i % 2 === 1 && 'md:flex-row-reverse',
+            ]}
+          >
+            <div class="flex shrink-0 items-center justify-center rounded-2xl bg-gold-100 p-md text-gold-700 md:w-56 md:self-stretch">
+              <Icon size={56} stroke-width={1.5} />
+            </div>
+            <div class="text-center md:max-w-xl md:text-left">
+              <h3 class="font-heading text-h3 font-semibold text-navy-900">{title}</h3>
+              <p class="mt-xs font-body text-body leading-relaxed text-neutral-500">{description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .dot-grid {
+    background-image: radial-gradient(rgba(21, 33, 55, 0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+</style>

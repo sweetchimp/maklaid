@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import Card from '../components/design-system/Card.astro';
+import Badge from '../components/design-system/Badge.astro';
+import Button from '../components/design-system/Button.astro';
+import { team } from '../data/team';
+
+interface Props {}
+
+const PAGE_SIZE = 9;
+
+const allPosts = (await getCollection('articles')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const posts = allPosts.slice(0, PAGE_SIZE);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(date);
+
+const readingTime = (body?: string) =>
+  Math.max(1, Math.round((body?.trim().split(/\s+/).length ?? 0) / 200));
+
+const authorName = (slug: string) =>
+  team.find((member) => member.slug === slug)?.name ?? 'MAKLAID Team';
+---
+
+<PageLayout
+  title="Client Insights"
+  eyebrow="Insights"
+  description="Practical legal commentary from the MAKLAID team — clear guidance on the issues that affect you."
+  path="/insights"
+  keywords="legal articles, law blog, legal commentary, kenya law, legal insights"
+>
+  <div slot="lede">
+    <p class="font-body text-body leading-relaxed text-neutral-500">
+      Clear guidance on the issues that affect you — written by the advocates who handle these
+      matters every day.
+    </p>
+  </div>
+
+  <div class="grid gap-md md:grid-cols-3">
+    {
+      posts.map((post) => (
+        <a
+          href={`/insights/${post.id}`}
+          class="group block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
+        >
+          <Card variant="interactive" bordered class="flex h-full flex-col">
+            <img
+              slot="image"
+              src={post.data.image}
+              alt=""
+              width="800"
+              height="450"
+              loading="lazy"
+              class="h-44 w-full object-cover"
+            />
+            {
+              post.data.tags.length > 0 && (
+                <div class="flex flex-wrap gap-xs">
+                  {post.data.tags.map((tag) => (
+                    <Badge variant="navy" size="sm">{tag}</Badge>
+                  ))}
+                </div>
+              )
+            }
+            <h2 class="mt-sm font-heading text-body font-semibold text-navy-900">{post.data.title}</h2>
+            <p class="font-body text-small leading-relaxed text-neutral-500">{post.data.excerpt}</p>
+            <p class="mt-sm font-body text-small font-medium tracking-wide text-neutral-400 uppercase">
+              {formatDate(post.data.pubDate)}
+            </p>
+            <p class="mt-xs font-body text-small font-medium text-navy-600">
+              By {authorName(post.data.author)} · {readingTime(post.body)} min read
+            </p>
+            <span class="mt-auto pt-md font-body text-small font-semibold text-gold-600 transition-colors duration-200 group-hover:text-gold-500">
+              Read More →
+            </span>
+          </Card>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="mt-lg">
+    <Button href="/contact" variant="ghost" size="md">Subscribe to our newsletter</Button>
+  </div>
+</PageLayout>

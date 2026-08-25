@@ -1,0 +1,61 @@
+---
+import { Phone, Mail, MessageCircle } from 'lucide-react';
+import { contactInfo } from '../data/contact';
+
+interface Props {
+  /** Compact mode for homepage (fewer details) */
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+
+const whatsappUrl = `https://wa.me/${contactInfo.phoneLink}?text=${encodeURIComponent(contactInfo.whatsappMessage)}`;
+
+const blocks = [
+  {
+    Icon: Phone,
+    label: 'Call Us',
+    value: contactInfo.phone,
+    href: `tel:${contactInfo.phoneLink}`,
+    external: false,
+  },
+  {
+    Icon: Mail,
+    label: 'Email Us',
+    value: contactInfo.email,
+    href: `mailto:${contactInfo.email}`,
+    external: false,
+  },
+  {
+    Icon: MessageCircle,
+    label: 'WhatsApp',
+    value: 'Chat with us',
+    href: whatsappUrl,
+    external: true,
+  },
+];
+---
+
+<div class="grid gap-md sm:grid-cols-2 lg:grid-cols-3">
+  {
+    blocks.map(({ Icon, label, value, href, external }) => (
+      <a
+        href={href}
+        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        class="group flex items-center gap-md rounded-xl border border-neutral-200 bg-white p-md shadow-sm transition-all duration-200 hover:border-gold-300 hover:shadow-md hover:scale-[1.02]"
+      >
+        <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-100 text-gold-700 transition-colors duration-200 group-hover:bg-gold-200">
+          <Icon size={24} />
+        </span>
+        <div>
+          <p class="font-body text-small font-semibold tracking-wide text-neutral-400 uppercase">
+            {label}
+          </p>
+          <p class="font-body text-body text-navy-900 transition-colors duration-200 group-hover:text-gold-600">
+            {value}
+          </p>
+        </div>
+      </a>
+    ))
+  }
+</div>

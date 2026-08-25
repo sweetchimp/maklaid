@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Engine Test</title>
+    <style>
+      body { font-family: sans-serif; background: #fff; margin: 24px; }
+      .row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+      .box { width: 28px; height: 28px; background: #ef4444; flex-shrink: 0; }
+      @layer t { .box { background: #10b981; } }
+      .mix { background: color-mix(in srgb, #3b82f6 50%, white); }
+      .oklch { background: oklch(0.6 0.2 140); }
+      .where { background: #f59e0b; }
+      :where(.where) { background: #8b5cf6; }
+      .pass { color: #047857; font-weight: bold; }
+      .fail { color: #b91c1c; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <h2>Editor Engine Test</h2>
+    <div class="row"><span class="box"></span> Cascade @layer &rarr; GREEN = pass / RED = fail</div>
+    <div class="row"><span class="box mix"></span> color-mix() &rarr; LIGHT BLUE = pass / RED = fail</div>
+    <div class="row"><span class="box oklch"></span> oklch() &rarr; GREEN = pass / RED = fail</div>
+    <div class="row"><span class="box where"></span> :where() &rarr; PURPLE = pass / ORANGE = fail</div>
+    <p id="ua"></p>
+    <script>
+      document.getElementById('ua').textContent = 'Engine: ' + navigator.userAgent;
+    </script>
+  </body>
+</html>

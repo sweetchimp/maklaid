@@ -1,0 +1,170 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Badge from '../../components/design-system/Badge.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { team } from '../../data/team';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  post: Awaited<ReturnType<typeof getCollection<'articles'>>>[number];
+}
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('articles');
+  return posts.map((post) => ({
+    params: { article: post.id },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const author = team.find((member) => member.slug === post.data.author);
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(date);
+
+const readingTime = Math.max(
+  1,
+  Math.round((post.body?.trim().split(/\s+/).length ?? 0) / 200)
+);
+
+const related = (await getCollection('articles'))
+  .filter((candidate) => candidate.id !== post.id)
+  .sort((a, b) => {
+    const sharedA = a.data.tags.filter((tag) => post.data.tags.includes(tag)).length;
+    const sharedB = b.data.tags.filter((tag) => post.data.tags.includes(tag)).length;
+    if (sharedB !== sharedA) return sharedB - sharedA;
+    return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+  })
+  .slice(0, 3);
+
+const proseClass =
+  '[&_a]:text-gold-600 [&_a]:underline [&_blockquote]:border-l-4 [&_blockquote]:border-gold-500 [&_blockquote]:pl-md [&_blockquote]:font-body [&_blockquote]:italic [&_h2]:mt-lg [&_h2]:mb-sm [&_h2]:font-heading [&_h2]:text-h3 [&_h2]:font-semibold [&_h2]:text-navy-900 [&_h3]:mt-md [&_h3]:mb-xs [&_h3]:font-heading [&_h3]:text-body [&_h3]:font-semibold [&_h3]:text-navy-900 [&_li]:my-xs [&_li]:pl-1 [&_li]:leading-relaxed [&_li]::marker:text-gold-600 [&_ol]:my-sm [&_ol]:list-decimal [&_ol]:space-y-1 [&_ol]:pl-6 [&_p]:my-sm [&_p]:leading-relaxed [&_p]:text-neutral-700 [&_strong]:text-navy-900 [&_ul]:my-sm [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-6';
+---
+
+<BaseLayout
+  title={`${post.data.title} | MAKLAID Insights`}
+  description={post.data.excerpt}
+  path={`/insights/${post.id}`}
+  type="article"
+  image={post.data.image}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema({
+      title: post.data.title,
+      excerpt: post.data.excerpt,
+      image: post.data.image,
+      pubDate: post.data.pubDate,
+      authorName: author?.name ?? 'MAKLAID Team',
+      slug: post.id,
+    }))} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema([
+      { label: 'Home', path: '/' },
+      { label: 'Insights', path: '/insights' },
+      { label: post.data.title, path: `/insights/${post.id}` },
+    ]))} />
+  </Fragment>
+  <article class="mx-auto max-w-7xl px-sm py-xl md:px-lg">
+    <header class="mx-auto max-w-3xl text-center">
+      {
+        post.data.tags.length > 0 && (
+          <div class="flex flex-wrap justify-center gap-xs">
+            {post.data.tags.map((tag) => (
+              <Badge variant="gold" size="sm">{tag}</Badge>
+            ))}
+          </div>
+        )
+      }
+      <h1
+        transition:name="article-title"
+        class="mt-sm font-heading text-h1 font-bold leading-tight text-navy-900"
+      >
+        {post.data.title}
+      </h1>
+      <div class="mt-sm flex flex-wrap items-center justify-center gap-x-md gap-y-xs font-body text-small text-neutral-500">
+        {
+          author && (
+            <a href={`/team/${author.slug}`} class="font-semibold text-navy-900 hover:text-gold-600">
+              By {author.name}
+            </a>
+          )
+        }
+        <span>{formatDate(post.data.pubDate)}</span>
+        <span aria-hidden="true">·</span>
+        <span>{readingTime} min read</span>
+      </div>
+    </header>
+
+    <img
+      src={post.data.image}
+      alt=""
+      width="800"
+      height="450"
+      loading="eager"
+      class="mx-auto mt-lg h-auto w-full max-w-4xl rounded-2xl border border-neutral-200 object-cover shadow-md"
+    />
+
+    <div class:list={['mx-auto mt-xl max-w-3xl font-body text-body', proseClass]}>
+      <Content />
+    </div>
+
+    {
+      author && (
+        <aside class="mx-auto mt-xl flex max-w-3xl flex-col items-start gap-md rounded-xl border border-neutral-200 bg-white p-md shadow-sm sm:flex-row sm:items-center">
+          <img
+            src={author.photo}
+            alt={`Portrait of ${author.name}`}
+            width="480"
+            height="600"
+            loading="lazy"
+            class="h-20 w-20 shrink-0 rounded-full object-cover"
+          />
+          <div>
+            <p class="font-body text-small font-semibold tracking-wide text-neutral-400 uppercase">
+              Written by
+            </p>
+            <h2 class="font-heading text-body font-semibold text-navy-900">{author.name}</h2>
+            <p class="mt-xs font-body text-small leading-relaxed text-neutral-500">
+              {author.shortBio}
+            </p>
+            <a
+              href={`/team/${author.slug}`}
+              class="mt-xs inline-block font-body text-small font-semibold text-gold-600 underline-offset-4 hover:text-gold-500 hover:underline"
+            >
+              View full profile →
+            </a>
+          </div>
+        </aside>
+      )
+    }
+
+    <section class="mx-auto mt-xl max-w-5xl">
+      <h2 class="text-center font-heading text-h3 font-semibold text-navy-900">Related Articles</h2>
+      <div class="mt-md grid gap-md sm:grid-cols-2 lg:grid-cols-3">
+        {
+          related.map((item) => (
+            <a
+              href={`/insights/${item.id}`}
+              class="group block h-full rounded-xl border border-neutral-200 bg-white p-md shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
+            >
+              <p class="font-body text-small font-medium tracking-wide text-neutral-400 uppercase">
+                {formatDate(item.data.pubDate)}
+              </p>
+              <h3 class="mt-xs font-heading text-small font-semibold text-navy-900">
+                {item.data.title}
+              </h3>
+              <span class="mt-auto inline-block pt-sm font-body text-small font-semibold text-gold-600 transition-colors duration-200 group-hover:text-gold-500">
+                Read More →
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </article>
+
+  <CtaSection variant="navy" headline="Need advice on this topic?" subtext="Book a free consultation with the MAKLAID team." label="Schedule Consultation" href="/contact" />
+</BaseLayout>

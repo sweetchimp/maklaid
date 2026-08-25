@@ -1,0 +1,30 @@
+---
+import { fade } from 'astro:transitions';
+import ContactInfo from './ContactInfo.astro';
+import Button from './design-system/Button.astro';
+---
+
+<section id="contact-preview" class="py-lg md:py-[5rem]">
+  <div class="mx-auto max-w-7xl px-sm md:px-lg">
+    <div class="mx-auto mb-lg max-w-2xl text-center">
+      <h2
+        transition:name="home-contact"
+        transition:animate={fade({ duration: '0.35s' })}
+        class="font-heading text-h2 font-bold text-navy-900"
+      >
+        Get in Touch
+      </h2>
+      <p class="mt-xs font-body text-body text-neutral-500">
+        Reach us directly by phone, email or WhatsApp — we respond within one business day.
+      </p>
+    </div>
+
+    <ContactInfo />
+
+    <div class="mt-lg text-center">
+      <Button href="/contact" variant="ghost" size="md">
+        Visit our Contact Page →
+      </Button>
+    </div>
+  </div>
+</section>

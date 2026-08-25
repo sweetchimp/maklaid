@@ -1,0 +1,85 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactInfo from '../components/ContactInfo.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { Clock, MapPin } from 'lucide-react';
+import { contactInfo } from '../data/contact';
+---
+
+<PageLayout
+  title="Contact Us"
+  eyebrow="Get in Touch"
+  description="Contact MAKLAID — call, write or visit our Nairobi chambers. Your first consultation is free."
+  path="/contact"
+  keywords="contact lawyer, nairobi law firm, legal consultation, maklaid contact, free consultation"
+>
+  <div slot="lede">
+    <p class="font-body text-body leading-relaxed text-neutral-500">
+      Reach us directly by phone, email or WhatsApp — we respond within one business day.
+    </p>
+  </div>
+
+  <div class="flex flex-col gap-xl">
+    <ContactInfo />
+
+    <div class="grid gap-lg md:grid-cols-2">
+      <div class="flex flex-col gap-md">
+        <div class="flex items-center gap-md rounded-xl border border-neutral-200 bg-white p-md shadow-sm">
+          <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold-100 text-gold-700">
+            <MapPin size={20} />
+          </span>
+          <div>
+            <p class="font-body text-small font-semibold tracking-wide text-neutral-400 uppercase">
+              Address
+            </p>
+            <a
+              href={contactInfo.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-body text-body text-navy-900 underline-offset-4 transition-colors duration-200 hover:text-gold-600 hover:underline"
+            >
+              {contactInfo.address}
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-neutral-200 bg-white p-md shadow-sm">
+          <div class="flex items-center gap-md">
+            <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold-100 text-gold-700">
+              <Clock size={20} />
+            </span>
+            <p class="font-body text-small font-semibold tracking-wide text-neutral-400 uppercase">
+              Office Hours
+            </p>
+          </div>
+          <ul class="mt-sm flex flex-col gap-xs">
+            {
+              contactInfo.hours.map(({ days, time }) => (
+                <li class="flex items-baseline justify-between gap-md font-body text-small">
+                  <span class="text-navy-900">{days}</span>
+                  <span class="text-neutral-500">{time}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <iframe
+        title="MAKLAID office location map"
+        src="https://maps.google.com/maps?q=Riverside%20Drive%20Westlands%20Nairobi&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="h-64 w-full rounded-xl border border-neutral-200 shadow-sm md:h-full md:min-h-[300px]"
+      ></iframe>
+    </div>
+
+    <div class="flex flex-col items-center gap-md rounded-xl border border-neutral-200 bg-navy-50 p-lg text-center">
+      <h2 class="font-heading text-h3 font-semibold text-navy-900">Prefer WhatsApp?</h2>
+      <p class="font-body text-body text-neutral-600">
+        Get a quick response by messaging us directly on WhatsApp.
+      </p>
+      <WhatsAppButton size="lg" />
+    </div>
+  </div>
+</PageLayout>

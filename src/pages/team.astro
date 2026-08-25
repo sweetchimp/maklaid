@@ -1,0 +1,64 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Card from '../components/design-system/Card.astro';
+import Badge from '../components/design-system/Badge.astro';
+import { team } from '../data/team';
+
+interface Props {}
+---
+
+<PageLayout
+  title="Our Team"
+  eyebrow="Attorneys"
+  description="Meet the advocates of MAKLAID — experienced counsel across every practice area."
+  path="/team"
+  keywords="lawyers, advocates, attorneys, legal team, maklaid lawyers, nairobi advocates"
+>
+  <div slot="lede">
+    <p class="font-body text-body leading-relaxed text-neutral-500">
+      Advocates who know the law — and listen first. Select any profile to see credentials,
+      specializations and recent writing.
+    </p>
+  </div>
+
+  <div class="grid gap-md sm:grid-cols-2 lg:grid-cols-3">
+    {
+      team.map((member) => (
+        <Card bordered class="group flex h-full flex-col">
+          <a href={`/team/${member.slug}`} class="block overflow-hidden rounded-lg" aria-label={`View profile of ${member.name}`}>
+            <img
+              src={member.photo}
+              alt={`Portrait of ${member.name}`}
+              width="480"
+              height="600"
+              loading="lazy"
+              class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </a>
+          <h2 class="mt-md font-heading text-h3 font-semibold text-navy-900">{member.name}</h2>
+          <p class="font-body text-small text-neutral-500">{member.title}</p>
+          <p class="mt-sm font-body text-small leading-relaxed text-neutral-500">{member.shortBio}</p>
+          <div class="mt-xs flex flex-wrap gap-xs">
+            {member.practices.map((practice) => (
+              <Badge variant="navy" size="sm">
+                {practice}
+              </Badge>
+            ))}
+          </div>
+          <div class="mt-auto pt-md">
+            <a
+              href={`/team/${member.slug}`}
+              class="font-body text-small font-semibold text-gold-600 underline-offset-4 transition-colors duration-200 hover:text-gold-500 hover:underline"
+            >
+              View Profile →
+            </a>
+          </div>
+        </Card>
+      ))
+    }
+  </div>
+
+  <p class="mt-lg max-w-2xl font-body text-small text-neutral-400">
+    Full associate profiles are being prepared and will be published shortly.
+  </p>
+</PageLayout>

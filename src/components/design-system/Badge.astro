@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { BadgeSize, BadgeVariant } from '../../lib/theme';
+
+interface Props extends HTMLAttributes<'span'> {
+  variant?: BadgeVariant;
+  size?: BadgeSize;
+}
+
+const { variant = 'navy', size = 'md', class: className, ...rest } = Astro.props;
+
+const base =
+  'inline-flex items-center gap-1 rounded-full font-body font-medium tracking-wide whitespace-nowrap uppercase';
+
+const variants: Record<BadgeVariant, string> = {
+  navy: 'bg-navy-900 text-white',
+  gold: 'bg-gold-500 text-navy-950',
+  success: 'bg-tint-success text-success-700 ring-1 ring-ring-success ring-inset',
+  warning: 'bg-tint-warning text-warning-700 ring-1 ring-ring-warning ring-inset',
+  error: 'bg-tint-error text-error-700 ring-1 ring-ring-error ring-inset',
+  neutral: 'bg-neutral-100 text-neutral-800 ring-1 ring-neutral-200 ring-inset',
+};
+
+const sizes: Record<BadgeSize, string> = {
+  sm: 'px-2 py-0.5 text-[0.6875rem]',
+  md: 'px-2.5 py-1 text-small',
+};
+---
+
+<span class:list={[base, variants[variant], sizes[size], className]} {...rest}>
+  <slot />
+</span>

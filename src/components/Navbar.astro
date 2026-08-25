@@ -1,0 +1,77 @@
+---
+import Logo from './design-system/Logo.astro';
+import Button from './design-system/Button.astro';
+import MobileMenu from './MobileMenu.astro';
+import { navLinks } from '../lib/theme';
+
+interface Props {}
+
+const path = (Astro.url.pathname.replace(/\/+$/, '') || '/').toLowerCase();
+
+const isActive = (href: string): boolean => {
+  const clean = href.replace(/\/+$/, '').toLowerCase();
+  if (clean === '' || clean === '/') return path === '/';
+  return path === clean || path.startsWith(`${clean}/`);
+};
+---
+
+<header id="site-header" class="sticky top-0 z-50 border-b border-line-white bg-navy-900 text-white">
+  <nav
+    class="mx-auto flex h-16 max-w-7xl items-center justify-between px-sm md:h-[4.5rem] md:px-lg"
+    aria-label="Main navigation"
+  >
+    <a href="/" class="hover-scale flex items-center" aria-label="MAKLAID home">
+      <Logo class="h-10 w-auto md:h-12" />
+    </a>
+
+    <ul class="hidden items-center gap-md md:flex">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+              class:list={[
+                'rounded-md px-2 py-1 font-body text-small font-medium transition-colors duration-200',
+                isActive(link.href)
+                  ? 'text-gold-400'
+                  : 'text-navy-100 hover:text-gold-400',
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="hidden md:block">
+      <Button href="/contact" variant="secondary" size="sm">Schedule Consultation</Button>
+    </div>
+
+    <div class="md:hidden">
+      <MobileMenu />
+    </div>
+  </nav>
+</header>
+
+<style>
+  #site-header {
+    transition: box-shadow 200ms ease-out;
+  }
+  #site-header[data-scrolled='true'] {
+    box-shadow: 0 4px 20px rgba(12, 21, 38, 0.35);
+  }
+</style>
+
+<script>
+  function syncShadow() {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+    header.dataset.scrolled = String(window.scrollY > 8);
+  }
+
+  document.addEventListener('scroll', syncShadow, { passive: true });
+  document.addEventListener('astro:after-swap', syncShadow);
+  syncShadow();
+</script>

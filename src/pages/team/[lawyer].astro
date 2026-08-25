@@ -1,0 +1,194 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Badge from '../../components/design-system/Badge.astro';
+import Button from '../../components/design-system/Button.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import Card from '../../components/design-system/Card.astro';
+import { GraduationCap, Scale, BookOpen } from 'lucide-react';
+import { team } from '../../data/team';
+import { personSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  member: (typeof team)[number];
+}
+
+export const getStaticPaths = (() =>
+  team.map((member) => ({
+    params: { lawyer: member.slug },
+    props: { member },
+  }))) satisfies GetStaticPaths;
+
+const { member } = Astro.props;
+const others = team.filter((candidate) => candidate.slug !== member.slug).slice(0, 2);
+
+const authored = (await getCollection('articles'))
+  .filter((post) => post.data.author === member.slug)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(date);
+---
+
+<BaseLayout
+  title={`${member.name} | MAKLAID`}
+  description={`${member.name}, ${member.title} at MAKLAID — ${member.shortBio}`}
+  path={`/team/${member.slug}`}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema(member))} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema([
+      { label: 'Home', path: '/' },
+      { label: 'Team', path: '/team' },
+      { label: member.name, path: `/team/${member.slug}` },
+    ]))} />
+  </Fragment>
+  <section class="bg-navy-900 text-white">
+    <div class="mx-auto grid max-w-7xl gap-lg px-sm py-xl md:grid-cols-[auto_1fr] md:items-center md:px-lg md:py-[5rem]">
+      <img
+        src={member.photo}
+        alt={`Portrait of ${member.name}`}
+        width="480"
+        height="600"
+        class="h-72 w-60 rounded-2xl border border-line-white object-cover shadow-xl"
+      />
+      <div class="flex flex-col items-start gap-sm">
+        <Badge variant="gold" size="sm">{member.title}</Badge>
+        <h1 class="font-heading text-h1 font-bold">{member.name}</h1>
+        <p class="max-w-2xl font-body text-body leading-relaxed text-navy-100">{member.shortBio}</p>
+        <div class="mt-xs flex flex-wrap gap-xs">
+          {member.practices.map((practice) => (
+            <Badge variant="navy" size="md">{practice}</Badge>
+          ))}
+        </div>
+        <div class="mt-xs">
+          <Button href="/contact" variant="secondary" size="md">Schedule Consultation</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-7xl px-sm py-xl md:px-lg">
+    <div class="grid gap-xl lg:grid-cols-[3fr_2fr]">
+      <div class="flex flex-col gap-xl">
+        <section class="max-w-3xl">
+          <h2 class="font-heading text-h3 font-semibold text-navy-900">Profile</h2>
+          <p class="mt-sm font-body text-body leading-relaxed text-neutral-500">{member.bio}</p>
+        </section>
+
+        <section class="max-w-3xl">
+          <h2 class="font-heading text-h3 font-semibold text-navy-900">Specializations</h2>
+          <p class="mt-sm font-body text-body leading-relaxed text-neutral-500">
+            {member.specializations}
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-h3 font-semibold text-navy-900">
+            {authored.length > 0 ? `Recent Insights by ${member.name.split(' ')[0]}` : 'Recent Insights'}
+          </h2>
+          {
+            authored.length > 0 ? (
+              <div class="mt-md grid gap-md sm:grid-cols-2 lg:grid-cols-3">
+                {authored.map((post) => (
+                  <a
+                    href={`/insights/${post.id}`}
+                    class="group block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
+                  >
+                    <Card variant="interactive" bordered class="h-full">
+                      <p class="font-body text-small font-medium tracking-wide text-neutral-400 uppercase">
+                        {formatDate(post.data.pubDate)}
+                      </p>
+                      <h3 class="mt-xs font-heading text-small font-semibold text-navy-900">
+                        {post.data.title}
+                      </h3>
+                      <span class="mt-auto pt-sm font-body text-small font-semibold text-gold-600 transition-colors duration-200 group-hover:text-gold-500">
+                        Read More →
+                      </span>
+                    </Card>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <p class="mt-sm max-w-2xl font-body text-body text-neutral-400">
+                Articles by this advocate are on the way — subscribe to the newsletter to be
+                notified.
+              </p>
+            )
+          }
+        </section>
+      </div>
+
+      <aside class="flex h-fit flex-col gap-md lg:sticky lg:top-24">
+        <section class="rounded-xl border border-neutral-200 bg-white p-md shadow-sm">
+          <h2 class="flex items-center gap-xs font-heading text-body font-semibold text-navy-900">
+            <BookOpen size={18} className="text-gold-600" /> Education
+          </h2>
+          <ul class="mt-sm flex flex-col gap-xs">
+            {
+              member.education.map((entry) => (
+                <li class="flex items-start gap-xs font-body text-small leading-relaxed text-neutral-500">
+                  <GraduationCap size={16} className="mt-0.5 shrink-0 text-gold-600" />
+                  {entry}
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="rounded-xl border border-neutral-200 bg-white p-md shadow-sm">
+          <h2 class="flex items-center gap-xs font-heading text-body font-semibold text-navy-900">
+            <Scale size={18} className="text-gold-600" /> Bar &amp; Admissions
+          </h2>
+          <ul class="mt-sm flex flex-col gap-xs">
+            {
+              member.barAdmissions.map((entry) => (
+                <li class="flex items-start gap-xs font-body text-small leading-relaxed text-neutral-500">
+                  <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold-500" />
+                  {entry}
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <section class="mt-xl">
+      <h2 class="font-heading text-h3 font-semibold text-navy-900">Other Advocates</h2>
+      <div class="mt-md grid gap-md sm:grid-cols-2">
+        {
+          others.map((other) => (
+            <a
+              href={`/team/${other.slug}`}
+              class="group flex items-center gap-md rounded-xl border border-neutral-200 bg-white p-sm shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
+            >
+              <img
+                src={other.photo}
+                alt={`Portrait of ${other.name}`}
+                width="480"
+                height="600"
+                loading="lazy"
+                class="h-16 w-16 shrink-0 rounded-full object-cover"
+              />
+              <div>
+                <h3 class="font-heading text-body font-semibold text-navy-900">{other.name}</h3>
+                <p class="font-body text-small text-neutral-500">{other.title}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+
+  <CtaSection
+    variant="gold"
+    headline={`Work with ${member.name}`}
+    subtext={`Schedule a consultation with our ${member.practices[0]} specialist today.`}
+    label={`Schedule with ${member.name.split(' ')[1] ?? member.name}`}
+    href="/contact"
+  />
+</BaseLayout>

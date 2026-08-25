@@ -1,0 +1,53 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { ButtonSize, ButtonVariant } from '../../lib/theme';
+
+interface Props extends HTMLAttributes<'button'> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  /** Renders an anchor styled as a button when provided */
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  disabled = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const base =
+  'inline-flex cursor-pointer items-center justify-center gap-2 rounded-md font-body font-semibold whitespace-nowrap transition-all duration-200 ease-out select-none hover:scale-105 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500 disabled:pointer-events-none disabled:opacity-50';
+
+const variants: Record<ButtonVariant, string> = {
+  primary: 'bg-navy-900 text-white shadow-sm hover:bg-navy-700 hover:shadow-md',
+  secondary: 'bg-gold-500 text-navy-950 shadow-sm hover:bg-gold-400 hover:shadow-md',
+  ghost:
+    'border border-neutral-300 bg-transparent text-neutral-800 hover:border-navy-300 hover:bg-navy-50 hover:text-navy-900',
+};
+
+const sizes: Record<ButtonSize, string> = {
+  sm: 'px-3 py-1.5 text-small',
+  md: 'px-5 py-2.5 text-body',
+  lg: 'px-8 py-3.5 text-body',
+};
+
+const classes = [base, variants[variant], sizes[size], className];
+---
+
+{
+  href ? (
+    <a href={href} class:list={classes} aria-disabled={disabled ? 'true' : undefined} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} disabled={disabled} class:list={classes} {...rest}>
+      <slot />
+    </button>
+  )
+}

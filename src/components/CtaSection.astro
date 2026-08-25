@@ -1,0 +1,40 @@
+---
+import Button from './design-system/Button.astro';
+
+interface Props {
+  headline?: string;
+  subtext?: string;
+  label?: string;
+  href?: string;
+  variant?: 'gold' | 'navy';
+}
+
+const {
+  headline = 'Ready to protect what matters?',
+  subtext = 'Speak with an advocate today — your first consultation is free.',
+  label = 'Schedule Consultation',
+  href = '/contact',
+  variant = 'gold',
+} = Astro.props;
+
+const sectionClass = variant === 'gold' ? 'bg-gold-500' : 'bg-navy-900';
+const headingClass = variant === 'gold' ? 'text-navy-950' : 'text-white';
+const subClass = variant === 'gold' ? 'text-navy-900' : 'text-navy-100';
+const buttonVariant = variant === 'gold' ? 'primary' : 'secondary';
+---
+
+<section class:list={['py-lg md:py-[5rem]', sectionClass]}>
+  <div
+    class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-md px-sm text-center md:flex-row md:px-lg md:text-left"
+  >
+    <div>
+      <h2 class:list={['font-heading text-h3 font-bold', headingClass]}>
+        {headline}
+      </h2>
+      <p class:list={['mt-1 font-body text-small', subClass]}>{subtext}</p>
+    </div>
+    <Button href={href} variant={buttonVariant} size="lg" class="shrink-0">
+      {label}
+    </Button>
+  </div>
+</section>

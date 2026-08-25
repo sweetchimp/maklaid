@@ -1,0 +1,77 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Card from '../components/design-system/Card.astro';
+import Badge from '../components/design-system/Badge.astro';
+import {
+  Briefcase,
+  HeartHandshake,
+  Shield,
+  Home,
+  Globe,
+  Scale,
+} from 'lucide-react';
+import { services, type ServiceIconName } from '../data/services';
+
+interface Props {}
+
+const iconMap: Record<ServiceIconName, typeof Briefcase> = {
+  briefcase: Briefcase,
+  'heart-handshake': HeartHandshake,
+  shield: Shield,
+  home: Home,
+  globe: Globe,
+  scale: Scale,
+};
+---
+
+<PageLayout
+  title="Our Services"
+  eyebrow="Practice Areas"
+  description="Explore MAKLAID's practice areas — corporate, family, criminal, property, immigration and litigation services."
+  path="/services"
+  keywords="legal services, practice areas, corporate law, family law, criminal defense, property law, immigration, litigation, kenya"
+>
+  <div slot="lede">
+    <p class="font-body text-body leading-relaxed text-neutral-500">
+      Six core practices, one standard of excellence. Select any area to see our process, typical
+      outcomes and answers to common questions.
+    </p>
+  </div>
+
+  <div class="grid gap-md sm:grid-cols-2 lg:grid-cols-3">
+    {
+      services.map((service) => {
+        const Icon = iconMap[service.icon];
+        return (
+          <div id={service.slug} class="scroll-mt-24">
+            <a
+              href={`/services/${service.slug}`}
+              class="group block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
+            >
+              <Card variant="interactive" bordered class="h-full">
+                <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700">
+                  <Icon size={24} />
+                </span>
+                <Badge variant="navy" size="sm">{service.tag}</Badge>
+                <h2 class="mt-xs font-heading text-body font-semibold text-navy-900">
+                  {service.title}
+                </h2>
+                <p class="mt-xs font-body text-small leading-relaxed text-neutral-500">
+                  {service.description}
+                </p>
+                <span class="mt-auto pt-sm font-body text-small font-semibold text-gold-600 transition-colors duration-200 group-hover:text-gold-500">
+                  Learn more →
+                </span>
+              </Card>
+            </a>
+          </div>
+        );
+      })
+    }
+  </div>
+
+  <p class="mt-lg max-w-2xl font-body text-small text-neutral-400">
+    Not sure which area fits your situation? Call us — if we are not the right firm for it, we
+    will tell you and point you to someone who is.
+  </p>
+</PageLayout>

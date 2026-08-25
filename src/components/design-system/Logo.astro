@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { theme } from '../../lib/theme';
+
+interface Props extends HTMLAttributes<'img'> {
+  alt?: string;
+}
+
+const { alt = 'MAKLAID logo', class: className, ...rest } = Astro.props;
+---
+
+<img
+  src={theme.assets.logo}
+  alt={alt}
+  width="1283"
+  height="1466"
+  loading="lazy"
+  decoding="async"
+  class:list={['h-auto', className]}
+  {...rest}
+/>
