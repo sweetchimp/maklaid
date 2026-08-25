@@ -3,6 +3,7 @@ import { Scale } from 'lucide-react';
 import { fade } from 'astro:transitions';
 import Badge from './design-system/Badge.astro';
 import Button from './design-system/Button.astro';
+import Logo from './design-system/Logo.astro';
 
 const keywords = [
   'Corporate & Commercial',
@@ -36,30 +37,35 @@ const keywords = [
     <Scale size={320} stroke-width={1} />
   </div>
 
-  <div class="relative mx-auto flex flex-1 max-w-7xl flex-col items-start justify-center gap-md px-sm py-xl md:px-lg">
-    <div class="animate-fade-in [animation-delay:0ms]">
+  <div class="relative mx-auto flex flex-1 max-w-7xl flex-col items-center justify-center gap-md px-sm py-xl md:px-lg">
+    <!-- Centered logo -->
+    <div class="animate-fade-in overflow-hidden rounded-full ring-2 ring-gold-500/20 drop-shadow-lg [animation-delay:0ms]">
+      <Logo class="h-20 w-20 md:h-28 md:w-28" alt="MAKLAID Advocates" />
+    </div>
+
+    <div class="animate-fade-in [animation-delay:100ms]">
       <Badge variant="gold" size="sm">Full-Service Law Firm</Badge>
     </div>
     <h1
       transition:name="home-hero"
       transition:animate={fade({ duration: '0.35s' })}
-      class="max-w-3xl font-heading text-h2 font-bold text-white md:text-h1"
+      class="max-w-3xl text-center font-heading text-h2 font-bold text-white md:text-h1"
     >
-      <span class="inline-block animate-fade-in [animation-delay:100ms]">Expert</span>
-      <span class="inline-block animate-fade-in [animation-delay:200ms]">Legal</span>
-      <span class="inline-block animate-fade-in [animation-delay:300ms]">Solutions</span>
-      <span class="inline-block animate-fade-in [animation-delay:400ms]">for</span>
-      <span class="inline-block animate-fade-in [animation-delay:500ms]">Business</span>
-      <span class="inline-block animate-fade-in [animation-delay:600ms]">&amp;</span>
-      <span class="inline-block animate-fade-in [animation-delay:700ms]">Family</span>
+      <span class="inline-block animate-fade-in [animation-delay:200ms]">Expert</span>
+      <span class="inline-block animate-fade-in [animation-delay:300ms]">Legal</span>
+      <span class="inline-block animate-fade-in [animation-delay:400ms]">Solutions</span>
+      <span class="inline-block animate-fade-in [animation-delay:500ms]">for</span>
+      <span class="inline-block animate-fade-in [animation-delay:600ms]">Business</span>
+      <span class="inline-block animate-fade-in [animation-delay:700ms]">&amp;</span>
+      <span class="inline-block animate-fade-in [animation-delay:800ms]">Family</span>
     </h1>
     <p
-      class="max-w-xl animate-slide-up font-body text-body leading-relaxed text-navy-100 [animation-delay:300ms]"
+      class="max-w-xl text-center animate-slide-up font-body text-body leading-relaxed text-navy-100 [animation-delay:400ms]"
     >
       From complex commercial disputes to deeply personal matters, MAKLAID pairs rigorous advocacy
       with clear, honest advice — so you always know where you stand and what comes next.
     </p>
-    <div class="flex animate-slide-up flex-col gap-sm sm:flex-row [animation-delay:500ms]">
+    <div class="flex animate-slide-up flex-col gap-sm sm:flex-row [animation-delay:600ms]">
       <Button href="/contact" variant="secondary" size="lg">Schedule Consultation</Button>
       <Button
         href="/services"
