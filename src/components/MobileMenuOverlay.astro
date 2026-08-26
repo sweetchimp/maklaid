@@ -76,7 +76,7 @@ const isActive = (href: string): boolean => {
       transform 300ms ease-out,
       visibility 0s linear 300ms;
   }
-  #mobile-menu-root[data-open='true'] .drawer {
+  .drawer.drawer-open {
     transform: translateX(0);
     visibility: visible;
     transition: transform 300ms ease-out;
@@ -86,7 +86,7 @@ const isActive = (href: string): boolean => {
     pointer-events: none;
     transition: opacity 300ms ease-out;
   }
-  #mobile-menu-root[data-open='true'] .backdrop {
+  .backdrop.backdrop-open {
     opacity: 1;
     pointer-events: auto;
   }
@@ -106,6 +106,8 @@ const isActive = (href: string): boolean => {
       toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
       const drawer = document.getElementById('mobile-drawer');
       drawer?.setAttribute('aria-hidden', String(!open));
+      drawer?.classList.toggle('drawer-open', open);
+      backdrop.classList.toggle('backdrop-open', open);
       document.body.classList.toggle('overflow-hidden', open);
       document.getElementById('menu-icon-burger')?.classList.toggle('hidden', open);
       document.getElementById('menu-icon-close')?.classList.toggle('hidden', !open);
