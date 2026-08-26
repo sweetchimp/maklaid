@@ -3,6 +3,7 @@ import '../styles/globals.css';
 import { ClientRouter } from 'astro:transitions';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import MobileMenuOverlay from '../components/MobileMenuOverlay.astro';
 import Watermark from '../components/design-system/Watermark.astro';
 import { generateMeta } from '../lib/seo';
 import { organizationSchema } from '../lib/schema';
@@ -66,5 +67,6 @@ const orgSchema = organizationSchema();
     </main>
 
     <Footer />
+    <MobileMenuOverlay />
   </body>
 </html>
