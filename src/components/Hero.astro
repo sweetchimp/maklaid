@@ -2,7 +2,6 @@
 import { Scale } from 'lucide-react';
 import Button from './design-system/Button.astro';
 import { firmInfo } from '../data/firm';
-import { theme } from '../lib/theme';
 ---
 
 <section
@@ -28,13 +27,10 @@ import { theme } from '../lib/theme';
   <div class="relative flex flex-1 flex-col gap-lg px-sm py-xl md:px-lg">
     <!-- Centered logo and firm name -->
     <div class="flex flex-col items-center gap-sm">
-      <div class="animate-fade-in drop-shadow-lg [animation-delay:0ms]">
-        <img src={theme.assets.logoTransparent} alt="MAKLAID Advocates" class="h-24 w-24 md:h-56 md:w-56" />
-      </div>
-      <span class="animate-fade-in font-heading text-xl tracking-widest uppercase text-gold-500 [animation-delay:100ms]">
+      <span class="animate-fade-in font-heading text-3xl tracking-widest uppercase text-gold-500 md:text-5xl [animation-delay:0ms]">
         {firmInfo.name}
       </span>
-      <span class="animate-fade-in font-body text-sm tracking-[0.25em] uppercase text-navy-200 [animation-delay:200ms]">
+      <span class="animate-fade-in font-body text-sm tracking-[0.25em] uppercase text-navy-200 [animation-delay:100ms]">
         Law. Strategy. Advocacy.
       </span>
     </div>
