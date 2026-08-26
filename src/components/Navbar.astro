@@ -1,4 +1,5 @@
 ---
+import Logo from './design-system/Logo.astro';
 import Button from './design-system/Button.astro';
 import MobileMenu from './MobileMenu.astro';
 import { navLinks } from '../lib/theme';
@@ -19,8 +20,11 @@ const isActive = (href: string): boolean => {
     class="mx-auto flex h-16 max-w-7xl items-center justify-between px-sm md:h-[4.5rem] md:px-lg"
     aria-label="Main navigation"
   >
-    <a href="/" class="hover-scale font-heading text-lg font-bold tracking-widest uppercase text-gold-500" aria-label="MAKLAID home">
+    <a href="/" class="hover-scale font-heading text-lg font-bold tracking-widest uppercase text-gold-500 md:hidden" aria-label="MAKLAID home">
       MAKLAID
+    </a>
+    <a href="/" class="hover-scale hidden items-center md:flex" aria-label="MAKLAID home">
+      <Logo class="h-12 w-auto" />
     </a>
 
     <ul class="hidden items-center gap-md md:flex">
