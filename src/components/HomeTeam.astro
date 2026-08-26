@@ -27,7 +27,7 @@ interface Props {}
       {
         team.map((member, index) => (
           <Card bordered class:list={['group animate-slide-up', `stagger-${index + 1}`]}>
-            <div slot="image" class="relative h-72">
+            <div slot="image" class="relative">
               <a href={`/team/${member.slug}`} class="block h-full" aria-label={`View profile of ${member.name}`}>
                 <img
                   src={member.photo}
@@ -35,7 +35,7 @@ interface Props {}
                   width="480"
                   height="600"
                   loading="lazy"
-                  class="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                  class="aspect-[3/4] w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                 />
                 <div class="absolute inset-0 flex items-center bg-navy-950/85 p-md opacity-0 transition-opacity duration-300 group-focus-within:opacity-100 group-hover:opacity-100">
                   <p class="font-body text-small leading-relaxed text-white">{member.shortBio}</p>
