@@ -25,15 +25,15 @@ const buttonVariant = variant === 'gold' ? 'primary' : 'secondary';
 
 <section class:list={['py-lg md:py-[5rem]', sectionClass]}>
   <div
-    class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-md px-sm text-center md:flex-row md:px-lg md:text-left"
+    class="mx-auto flex max-w-7xl flex-col items-start gap-md px-sm text-left md:px-lg"
   >
-    <div>
+    <div class="w-full">
       <h2 class:list={['font-heading text-h3 font-bold', headingClass]}>
         {headline}
       </h2>
-      <p class:list={['mt-1 font-body text-small', subClass]}>{subtext}</p>
+      <p class:list={['mt-2 max-w-3xl font-body text-body leading-relaxed', subClass]}>{subtext}</p>
     </div>
-    <Button href={href} variant={buttonVariant} size="lg" class="shrink-0">
+    <Button href={href} variant={buttonVariant} size="lg">
       {label}
     </Button>
   </div>

@@ -41,7 +41,7 @@ export function organizationSchema() {
         contactType: 'customer service',
       },
     ],
-    sameAs: ['https://www.linkedin.com/company/maklaid'],
+    sameAs: ['https://www.linkedin.com/company/maklaid-advocates/'],
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',

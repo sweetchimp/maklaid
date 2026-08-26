@@ -5,7 +5,7 @@
 
 export const firmInfo = {
   name: 'MAKLAID ADVOCATES',
-  tagline: 'Expert Legal Solutions for Business & Family',
+  tagline: 'Law. Strategy. Advocacy.',
   yearEstablished: 2024,
   location: 'Kampala, Uganda',
   description:

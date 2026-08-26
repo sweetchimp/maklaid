@@ -39,7 +39,7 @@ const authorName = (slug: string) =>
     </p>
   </div>
 
-  <div class="grid gap-md md:grid-cols-3">
+  <div class="grid gap-md md:grid-cols-2">
     {
       posts.map((post) => (
         <a
@@ -47,15 +47,6 @@ const authorName = (slug: string) =>
           class="group block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
         >
           <Card variant="interactive" bordered class="flex h-full flex-col">
-            <img
-              slot="image"
-              src={post.data.image}
-              alt={post.data.title}
-              width="800"
-              height="450"
-              loading="lazy"
-              class="h-44 w-full object-cover"
-            />
             {
               post.data.tags.length > 0 && (
                 <div class="flex flex-wrap gap-xs">

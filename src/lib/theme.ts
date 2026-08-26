@@ -151,6 +151,7 @@ export const theme = {
 
   assets: {
     logo: '/images/maklaid-logo.jpg',
+    logoTransparent: '/images/transparent.png',
   },
 
   /* ------------------------------ Breakpoints ------------------------------ */

@@ -1,20 +1,8 @@
 ---
 import { Scale } from 'lucide-react';
-import { fade } from 'astro:transitions';
-import Badge from './design-system/Badge.astro';
 import Button from './design-system/Button.astro';
-import Logo from './design-system/Logo.astro';
-
-const keywords = [
-  'Corporate & Commercial',
-  'Land & Property',
-  'Civil Litigation',
-  'Family Law',
-  'Criminal Law',
-  'Legal Advisory',
-  'Dispute Resolution',
-  'Contract Review',
-];
+import { firmInfo } from '../data/firm';
+import { theme } from '../lib/theme';
 ---
 
 <section
@@ -37,38 +25,29 @@ const keywords = [
     <Scale size={320} stroke-width={1} />
   </div>
 
-  <div class="relative mx-auto flex flex-1 max-w-7xl flex-col items-center justify-center gap-md px-sm py-xl md:px-lg">
-    <!-- Centered logo -->
-    <div class="animate-fade-in overflow-hidden rounded-full ring-2 ring-gold-500/30 drop-shadow-lg [animation-delay:0ms]">
-      <Logo class="h-24 w-24 md:h-32 md:w-32" alt="MAKLAID Advocates" />
+  <div class="relative flex flex-1 flex-col gap-lg px-sm py-xl md:px-lg">
+    <!-- Centered logo and firm name -->
+    <div class="flex flex-col items-center gap-sm">
+      <div class="animate-fade-in drop-shadow-lg [animation-delay:0ms]">
+        <img src={theme.assets.logoTransparent} alt="MAKLAID Advocates" class="h-40 w-40 md:h-56 md:w-56" />
+      </div>
+      <span class="animate-fade-in font-heading text-xl tracking-widest uppercase text-gold-500 [animation-delay:100ms]">
+        {firmInfo.name}
+      </span>
+      <span class="animate-fade-in font-body text-sm tracking-[0.25em] uppercase text-navy-200 [animation-delay:200ms]">
+        Law. Strategy. Advocacy.
+      </span>
     </div>
 
-    <div class="animate-fade-in [animation-delay:100ms]">
-      <Badge variant="gold" size="sm">Full-Service Law Firm</Badge>
-    </div>
-
-    <h1
-      transition:name="home-hero"
-      transition:animate={fade({ duration: '0.35s' })}
-      class="max-w-4xl text-left md:text-center font-heading text-h2 font-bold text-white md:text-h1"
-    >
-      <span class="inline-block" style="animation: slide-in-left 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 200ms both;">COUNSEL</span>
-      <span class="inline-block" style="animation: slide-in-left 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 300ms both;">FOR</span>
-      <span class="inline-block" style="animation: slide-in-left 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 400ms both;">WHAT</span>
-      <span class="inline-block" style="animation: slide-in-left 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 500ms both;">MATTERS.</span>
-      <br />
-      <span class="inline-block" style="animation: slide-in-left 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 700ms both;">ADVOCACY</span>
-      <span class="inline-block" style="animation: slide-in-left 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 800ms both;">FOR</span>
-      <span class="inline-block" style="animation: slide-in-left 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 900ms both;">WHAT'S</span>
-      <span class="inline-block" style="animation: slide-in-left 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1000ms both;">NEXT.</span>
-    </h1>
-
+    <!-- Wide paragraph, left-aligned -->
     <p
-      class="max-w-xl text-center animate-slide-up font-body text-body leading-relaxed text-navy-100 [animation-delay:1100ms]"
+      class="w-full max-w-3xl animate-slide-up font-body text-body leading-relaxed text-navy-100 [animation-delay:1100ms]"
     >
       From complex commercial disputes to deeply personal matters, MAKLAID pairs rigorous advocacy
       with clear, honest advice — so you always know where you stand and what comes next.
     </p>
+
+    <!-- Buttons, left-aligned -->
     <div class="flex animate-slide-up flex-col gap-sm sm:flex-row [animation-delay:1200ms]">
       <Button href="/contact" variant="secondary" size="lg">Schedule Consultation</Button>
       <Button
@@ -80,34 +59,4 @@ const keywords = [
       </Button>
     </div>
   </div>
-
-  <!-- Scrolling keywords ticker -->
-  <div class="relative border-t border-line-white bg-navy-950/50 py-sm overflow-hidden" aria-hidden="true">
-    <div class="marquee-track flex whitespace-nowrap">
-      <span class="marquee-content font-body text-small tracking-widest uppercase text-navy-200/60">
-        {keywords.map((kw) => (
-          <span>{kw}</span>
-          <span class="mx-md text-gold-500/40">●</span>
-        ))}
-      </span>
-      <span class="marquee-content font-body text-small tracking-widest uppercase text-navy-200/60">
-        {keywords.map((kw) => (
-          <span>{kw}</span>
-          <span class="mx-md text-gold-500/40">●</span>
-        ))}
-      </span>
-    </div>
-  </div>
 </section>
-
-<style>
-  .marquee-track {
-    animation: marquee 25s linear infinite;
-    width: max-content;
-  }
-
-  .marquee-content {
-    display: inline-flex;
-    align-items: center;
-  }
-</style>

@@ -45,9 +45,11 @@ export function generateMeta({
   tags.push(`<meta property="og:image" content="${fullImage}" />`);
   tags.push(`<meta property="og:url" content="${fullUrl}" />`);
   tags.push(`<meta property="og:site_name" content="${SITE_NAME}" />`);
+  tags.push(`<meta property="og:locale" content="en_US" />`);
 
   // Twitter Card
   tags.push(`<meta name="twitter:card" content="summary_large_image" />`);
+  tags.push(`<meta name="twitter:site" content="@maklaidadvocates" />`);
   tags.push(`<meta name="twitter:title" content="${ogTitle}" />`);
   tags.push(`<meta name="twitter:description" content="${description}" />`);
   tags.push(`<meta name="twitter:image" content="${fullImage}" />`);
