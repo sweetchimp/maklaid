@@ -94,6 +94,10 @@ const isActive = (href: string): boolean => {
 
 <script>
   function initMobileMenu() {
+    const win = window as unknown as { __mkMenuInitialized?: boolean };
+    if (win.__mkMenuInitialized) return;
+    win.__mkMenuInitialized = true;
+
     const root = document.getElementById('mobile-menu-root');
     const toggle = document.getElementById('menu-toggle');
     const closeBtn = document.getElementById('menu-close');
@@ -160,4 +164,5 @@ const isActive = (href: string): boolean => {
   }
 
   document.addEventListener('astro:page-load', initMobileMenu);
+  document.addEventListener('DOMContentLoaded', initMobileMenu);
 </script>
