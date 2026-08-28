@@ -7,7 +7,7 @@
 
 const SITE_URL = 'https://maklaidadvocates.com';
 const DEFAULT_IMAGE = '/images/maklaid-logo.jpg';
-const SITE_NAME = 'MAKLAID';
+const SITE_NAME = 'MAKLAID ADVOCATES';
 
 export interface SeoOptions {
   title: string;
