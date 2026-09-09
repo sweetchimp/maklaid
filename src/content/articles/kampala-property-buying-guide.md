@@ -3,7 +3,7 @@ title: "Buying property in Kampala: a due-diligence checklist"
 excerpt: "Ten searches every purchaser should run before deposit money changes hands — and how we run them fast."
 pubDate: 2026-07-28
 author: dk-mutua
-image: "/images/insights/nairobi-property.svg"
+image: "/images/thought-leadership/nairobi-property.svg"
 tags: ["Property", "Kampala"]
 ---
 
@@ -54,3 +54,4 @@ Stamp duty is a tax on property transfers. In Kampala it is 1% of the property v
 
 **Do I need a lawyer for a property purchase?**
 While not legally required, it is strongly advisable. Property law in Uganda is complex, and mistakes can cost more than a lawyer's fee. We protect your investment from start to finish.
+

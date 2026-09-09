@@ -87,14 +87,14 @@ const formatDate = (date: Date) =>
 
         <section>
           <h2 class="font-heading text-h3 font-semibold text-navy-900">
-            {authored.length > 0 ? `Recent Insights by ${member.name.split(' ')[0]}` : 'Recent Insights'}
+            {authored.length > 0 ? `Recent Thought Leadership by ${member.name.split(' ')[0]}` : 'Recent Thought Leadership'}
           </h2>
           {
             authored.length > 0 ? (
               <div class="mt-md grid gap-md sm:grid-cols-2 lg:grid-cols-3">
                 {authored.map((post) => (
                   <a
-                    href={`/insights/${post.id}`}
+                    href={`/thought-leadership/${post.id}`}
                     class="group block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
                   >
                     <Card variant="interactive" bordered class="h-full">
@@ -192,3 +192,4 @@ const formatDate = (date: Date) =>
     href="/contact"
   />
 </BaseLayout>
+

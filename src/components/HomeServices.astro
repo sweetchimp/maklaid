@@ -43,13 +43,15 @@ const featured = services;
       {
         featured.map((service, index) => {
           const Icon = iconMap[service.icon];
+          const delay = index * 0.15;
+          const depths = ['parallaxFadeDeep', 'parallaxFadeMid', 'parallaxFadeShallow'];
+          const depth = depths[index % 3];
+          const duration = index % 3 === 0 ? '1s' : index % 3 === 1 ? '0.9s' : '0.8s';
           return (
             <a
               href={`/services#${service.slug}`}
-              class:list={[
-                'group h-full rounded-xl animate-slide-up focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500',
-                `stagger-${index + 1}`,
-              ]}
+              class="group h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
+              style={`animation: ${depth} ${duration} cubic-bezier(0.34, 1.56, 0.64, 1) both ${0.2 + delay}s;`}
             >
               <Card variant="interactive" bordered class="h-full">
                 <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700">

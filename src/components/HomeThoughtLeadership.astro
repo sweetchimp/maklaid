@@ -1,4 +1,4 @@
----
+﻿---
 import { getCollection } from 'astro:content';
 import { fade } from 'astro:transitions';
 import Card from './design-system/Card.astro';
@@ -23,15 +23,15 @@ const authorName = (slug: string) =>
   team.find((member) => member.slug === slug)?.name ?? 'MAKLAID Team';
 ---
 
-<section id="insights" class="bg-neutral-50 py-lg md:py-[5rem]">
+<section id="thought-leadership" class="bg-neutral-50 py-lg md:py-[5rem]">
   <div class="mx-auto max-w-7xl px-sm md:px-lg">
     <div class="mx-auto mb-lg max-w-2xl text-center">
       <h2
-        transition:name="home-insights"
+        transition:name="home-thought-leadership"
         transition:animate={fade({ duration: '0.35s' })}
         class="font-heading text-h2 font-bold text-navy-900"
       >
-        Latest Insights
+        Thought Leadership
       </h2>
       <p class="mt-xs font-body text-body text-neutral-500">
         Practical commentary on the legal issues shaping business and life.
@@ -40,14 +40,17 @@ const authorName = (slug: string) =>
 
     <div class="grid gap-md md:grid-cols-2">
       {
-        posts.map((post, index) => (
-          <a
-            href={`/insights/${post.id}`}
-            class:list={[
-              'group h-full rounded-xl animate-slide-up focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500',
-              `stagger-${index + 1}`,
-            ]}
-          >
+        posts.map((post, index) => {
+          const delay = index * 0.15;
+          const depths = ['parallaxFadeDeep', 'parallaxFadeMid', 'parallaxFadeShallow'];
+          const depth = depths[index % 3];
+          const duration = index % 3 === 0 ? '1s' : index % 3 === 1 ? '0.9s' : '0.8s';
+          return (
+            <a
+              href={`/thought-leadership/${post.id}`}
+              class="group h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
+              style={`animation: ${depth} ${duration} cubic-bezier(0.34, 1.56, 0.64, 1) both ${0.2 + delay}s;`}
+            >
             <Card variant="interactive" bordered class="flex h-full flex-col">
               {post.data.tags.length > 0 && (
                 <div class="flex flex-wrap gap-xs">
@@ -62,15 +65,19 @@ const authorName = (slug: string) =>
                 {formatDate(post.data.pubDate)}
               </p>
               <p class="mt-xs font-body text-small font-medium text-navy-600">
-                By {authorName(post.data.author)} · {readingTime(post.body)} min read
+                By {authorName(post.data.author)} Â· {readingTime(post.body)} min read
               </p>
               <span class="mt-auto pt-md font-body text-small font-semibold text-gold-600 transition-colors duration-200 group-hover:text-gold-500">
-                Read More →
+                Read More â†’
               </span>
             </Card>
           </a>
-        ))
+          );
+        })
       }
     </div>
   </div>
 </section>
+
+
+

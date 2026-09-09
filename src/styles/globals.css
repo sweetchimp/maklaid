@@ -151,6 +151,88 @@
 @utility stagger-5 { animation-delay: 0.5s; }
 @utility stagger-6 { animation-delay: 0.6s; }
 
+/* Parallax + Fade Animations */
+@keyframes parallaxFadeDeep {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) translateZ(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(-50px);
+  }
+}
+
+@keyframes parallaxFadeMid {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes parallaxFadeShallow {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) translateZ(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(50px);
+  }
+}
+
+@keyframes parallaxFadeFront {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) translateZ(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(100px);
+  }
+}
+
+@keyframes parallaxFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@utility parallax-deep {
+  animation: parallaxFadeDeep 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  perspective: 1000px;
+}
+
+@utility parallax-mid {
+  animation: parallaxFadeMid 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+  perspective: 1000px;
+}
+
+@utility parallax-shallow {
+  animation: parallaxFadeShallow 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  perspective: 1000px;
+}
+
+@utility parallax-front {
+  animation: parallaxFadeFront 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  perspective: 1000px;
+}
+
+@utility parallax-float {
+  animation: parallaxFloat 3s ease-in-out infinite;
+}
+
+@utility parallax-container {
+  perspective: 1200px;
+}
+
 /* Accessibility: collapse motion effects for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,

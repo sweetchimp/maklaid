@@ -3,7 +3,7 @@ title: "Incorporating a company in Uganda: a step-by-step guide"
 excerpt: "From name reservation to certificate of incorporation — everything you need to know about starting a business in Uganda."
 pubDate: 2026-05-15
 author: am-maklaid
-image: "/images/insights/startup-incorporate.svg"
+image: "/images/thought-leadership/startup-incorporate.svg"
 tags: ["Corporate", "Startups"]
 ---
 
@@ -91,3 +91,4 @@ URSB offers an online registration portal at ursb.go.ug. However, we recommend l
 
 **How long does the process take?**
 Typically 7–14 working days from filing to certificate of incorporation. Post-incorporation registrations add 2–4 weeks.
+

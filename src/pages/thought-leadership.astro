@@ -1,4 +1,4 @@
----
+﻿---
 import { getCollection } from 'astro:content';
 import PageLayout from '../layouts/PageLayout.astro';
 import Card from '../components/design-system/Card.astro';
@@ -26,15 +26,15 @@ const authorName = (slug: string) =>
 ---
 
 <PageLayout
-  title="Client Insights"
-  eyebrow="Insights"
-  description="Practical legal commentary from the MAKLAID ADVOCATES team — clear guidance on the issues that affect you."
-  path="/insights"
-  keywords="legal articles, law blog, legal commentary, uganda law, legal insights, kampala"
+  title="Thought Leadership"
+  eyebrow="Thought Leadership"
+  description="Practical legal commentary from the MAKLAID ADVOCATES team â€” clear guidance on the issues that affect you."
+  path="/thought-leadership"
+  keywords="legal articles, law blog, legal commentary, uganda law, thought leadership, kampala"
 >
   <div slot="lede">
     <p class="font-body text-body leading-relaxed text-neutral-500">
-      Clear guidance on the issues that affect you — written by the advocates who handle these
+      Clear guidance on the issues that affect you â€” written by the advocates who handle these
       matters every day.
     </p>
   </div>
@@ -43,7 +43,7 @@ const authorName = (slug: string) =>
     {
       posts.map((post) => (
         <a
-          href={`/insights/${post.id}`}
+          href={`/thought-leadership/${post.id}`}
           class="group block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
         >
           <Card variant="interactive" bordered class="flex h-full flex-col">
@@ -62,10 +62,10 @@ const authorName = (slug: string) =>
               {formatDate(post.data.pubDate)}
             </p>
             <p class="mt-xs font-body text-small font-medium text-navy-600">
-              By {authorName(post.data.author)} · {readingTime(post.body)} min read
+              By {authorName(post.data.author)} Â· {readingTime(post.body)} min read
             </p>
             <span class="mt-auto pt-md font-body text-small font-semibold text-gold-600 transition-colors duration-200 group-hover:text-gold-500">
-              Read More →
+              Read More â†’
             </span>
           </Card>
         </a>
@@ -77,3 +77,4 @@ const authorName = (slug: string) =>
     <Button href="/contact" variant="ghost" size="md">Subscribe to our newsletter</Button>
   </div>
 </PageLayout>
+

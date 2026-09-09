@@ -46,9 +46,9 @@ const proseClass =
 ---
 
 <BaseLayout
-  title={`${post.data.title} | MAKLAID Insights`}
+  title={`${post.data.title} | MAKLAID Thought Leadership`}
   description={post.data.excerpt}
-  path={`/insights/${post.id}`}
+  path={`/thought-leadership/${post.id}`}
   type="article"
   image={post.data.image}
 >
@@ -63,8 +63,8 @@ const proseClass =
     }))} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema([
       { label: 'Home', path: '/' },
-      { label: 'Insights', path: '/insights' },
-      { label: post.data.title, path: `/insights/${post.id}` },
+      { label: 'Thought Leadership', path: '/thought-leadership' },
+      { label: post.data.title, path: `/thought-leadership/${post.id}` },
     ]))} />
   </Fragment>
   <article class="mx-auto max-w-7xl px-sm py-xl md:px-lg">
@@ -147,7 +147,7 @@ const proseClass =
         {
           related.map((item) => (
             <a
-              href={`/insights/${item.id}`}
+              href={`/thought-leadership/${item.id}`}
               class="group block h-full rounded-xl border border-neutral-200 bg-white p-md shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
             >
               <p class="font-body text-small font-medium tracking-wide text-neutral-500 uppercase">
@@ -168,3 +168,4 @@ const proseClass =
 
   <CtaSection variant="navy" headline="Need advice on this topic?" subtext="Book a free consultation with the MAKLAID team." label="Schedule Consultation" href="/contact" />
 </BaseLayout>
+

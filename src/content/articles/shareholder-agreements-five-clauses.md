@@ -3,7 +3,7 @@ title: "Five clauses every shareholder agreement needs"
 excerpt: "Deadlocks, exits and valuation — the provisions that decide whether founder disputes end in boardrooms or courtrooms."
 pubDate: 2026-06-14
 author: am-maklaid
-image: "/images/insights/shareholder-agreements.svg"
+image: "/images/thought-leadership/shareholder-agreements.svg"
 tags: ["Corporate", "Startups", "Uganda"]
 ---
 
@@ -32,3 +32,4 @@ Certain decisions — new debt, director appointments, related-party dealings �
 ## Write it while you agree
 
 Shareholder agreements are cheapest to negotiate when nobody needs one. If your company operates on handshakes and goodwill alone, our corporate team can close that gap inside two weeks.
+

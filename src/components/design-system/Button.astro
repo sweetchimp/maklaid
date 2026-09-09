@@ -9,6 +9,8 @@ interface Props extends HTMLAttributes<'button'> {
   href?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  /** Adds elastic pulse animation */
+  pulse?: boolean;
 }
 
 const {
@@ -17,6 +19,7 @@ const {
   href,
   type = 'button',
   disabled = false,
+  pulse = false,
   class: className,
   ...rest
 } = Astro.props;
@@ -37,7 +40,7 @@ const sizes: Record<ButtonSize, string> = {
   lg: 'px-8 py-3.5 text-body',
 };
 
-const classes = [base, variants[variant], sizes[size], className];
+const classes = [base, variants[variant], sizes[size], pulse && 'elastic-pulse', className];
 ---
 
 {

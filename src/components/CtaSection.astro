@@ -33,7 +33,7 @@ const buttonVariant = variant === 'gold' ? 'primary' : 'secondary';
       </h2>
       <p class:list={['mt-2 max-w-3xl font-body text-body leading-relaxed', subClass]}>{subtext}</p>
     </div>
-    <Button href={href} variant={buttonVariant} size="lg">
+    <Button href={href} variant={buttonVariant} size="lg" class="elastic-pulse">
       {label}
     </Button>
   </div>

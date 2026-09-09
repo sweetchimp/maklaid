@@ -10,7 +10,7 @@ const stats = firmInfo.stats;
 <section id="about" class="bg-neutral-50 py-lg md:py-[5rem]">
   <div class="mx-auto max-w-7xl px-sm md:px-lg">
     <div class="grid items-center gap-lg md:grid-cols-2">
-      <div class="animate-slide-up stagger-1">
+      <div style="animation: parallaxFadeMid 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.2s;">
         <h2
           transition:name="home-about"
           transition:animate={fade({ duration: '0.35s' })}
@@ -31,17 +31,24 @@ const stats = firmInfo.stats;
 
       <div class="grid gap-md sm:grid-cols-3 md:grid-cols-1">
         {
-          stats.map(({ value, label }, index) => (
-            <div class:list={[
-              'flex items-baseline gap-xs rounded-xl border border-neutral-200 bg-white px-md py-sm shadow-sm transition-all duration-300 hover:border-gold-400 hover:shadow-md animate-slide-up md:flex-col md:items-start md:gap-0',
-              `stagger-${index + 2}`,
-            ]}>
-              <span class="font-heading text-h3 font-bold text-navy-900">{value}</span>
-              <span class="font-body text-small font-medium tracking-wide text-neutral-500 uppercase">
-                {label}
-              </span>
-            </div>
-          ))
+          stats.map(({ value, label }, index) => {
+            const delay = index * 0.15;
+            const depths = ['parallaxFadeDeep', 'parallaxFadeMid', 'parallaxFadeShallow', 'parallaxFadeFront'];
+            const depth = depths[index % 4];
+            const durations = ['1s', '0.9s', '0.8s', '0.7s'];
+            const duration = durations[index % 4];
+            return (
+              <div
+                class="flex items-baseline gap-xs rounded-xl border border-neutral-200 bg-white px-md py-sm shadow-sm transition-all duration-300 hover:border-gold-400 hover:shadow-md md:flex-col md:items-start md:gap-0"
+                style={`animation: ${depth} ${duration} cubic-bezier(0.34, 1.56, 0.64, 1) both ${0.3 + delay}s;`}
+              >
+                <span class="font-heading text-h3 font-bold text-navy-900">{value}</span>
+                <span class="font-body text-small font-medium tracking-wide text-neutral-500 uppercase">
+                  {label}
+                </span>
+              </div>
+            );
+          })
         }
       </div>
     </div>

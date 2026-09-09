@@ -1,5 +1,5 @@
-/**
- * MAKLAID Design System — single source of truth.
+﻿/**
+ * MAKLAID Design System â€” single source of truth.
  *
  * Brand colors were sampled pixel-by-pixel from the official logo
  * (Maklaid DP.jpg): navy #152137 + white #FFFFFF. The gold accent
@@ -142,9 +142,9 @@ export const theme = {
   /* ------------------------------- Animations ------------------------------ */
 
   animations: {
-    fadeIn: 'opacity 0 → 1, 300ms ease-out',
-    slideUp: 'translateY(20px → 0), 400ms ease-out',
-    hoverScale: 'scale(1 → 1.05), 200ms ease-out',
+    fadeIn: 'opacity 0 â†’ 1, 300ms ease-out',
+    slideUp: 'translateY(20px â†’ 0), 400ms ease-out',
+    hoverScale: 'scale(1 â†’ 1.05), 200ms ease-out',
   } as AnimationTokens,
 
   /* -------------------------------- Assets --------------------------------- */
@@ -173,11 +173,11 @@ export const navLinks: NavLink[] = [
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
   { label: 'Team', href: '/team' },
-  { label: 'Insights', href: '/insights' },
+  { label: 'Thought Leadership', href: '/thought-leadership' },
   { label: 'Contact', href: '/contact' },
 ];
 
-/** Footer column model — Services / Company / Contact info */
+/** Footer column model â€” Services / Company / Contact info */
 export interface FooterColumn {
   heading: string;
   links: NavLink[];
@@ -199,7 +199,7 @@ export const footerColumns: FooterColumn[] = [
     links: [
       { label: 'About MAKLAID', href: '/about' },
       { label: 'Our Team', href: '/team' },
-      { label: 'Client Insights', href: '/insights' },
+      { label: 'Thought Leadership', href: '/thought-leadership' },
       { label: 'Design System', href: '/design-system' },
       { label: 'Contact Us', href: '/contact' },
     ],
@@ -259,3 +259,4 @@ export const practiceAreas: { title: string; description: string; tag: string }[
     tag: 'Defense',
   },
 ];
+

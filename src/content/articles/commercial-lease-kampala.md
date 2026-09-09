@@ -3,7 +3,7 @@ title: "Commercial leases in Kampala: what tenants miss"
 excerpt: "The clauses that catch tenants off-guard — and how to negotiate them before you sign."
 pubDate: 2026-06-01
 author: dk-mutua
-image: "/images/insights/commercial-lease.svg"
+image: "/images/thought-leadership/commercial-lease.svg"
 tags: ["Property", "Commercial"]
 ---
 
@@ -84,3 +84,4 @@ Typically 3–5 years for office space, 5–10 years for retail. Longer leases m
 
 **Can I sublet my commercial premises?**
 Only if the lease permits it. Most leases require the landlord's consent, which may be withheld. Check the subletting clause before making any arrangements.
+

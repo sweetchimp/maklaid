@@ -3,7 +3,7 @@ title: "Probate and succession in Uganda: a realistic timeline"
 excerpt: "From death certificate to distribution — what to expect when administering an estate in Uganda."
 pubDate: 2026-07-15
 author: jw-achieng
-image: "/images/insights/probate-timeline.svg"
+image: "/images/thought-leadership/probate-timeline.svg"
 tags: ["Family Law", "Succession"]
 ---
 
@@ -71,3 +71,4 @@ The estate is distributed according to the Intestate Succession Act. The survivi
 
 **How much does probate cost?**
 Our fees are typically a percentage of the estate value, agreed upfront. We provide a clear estimate after the initial consultation.
+

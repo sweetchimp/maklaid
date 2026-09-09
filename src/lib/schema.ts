@@ -1,5 +1,5 @@
-/**
- * MAKLAID ADVOCATES Schema.org — JSON-LD structured data helpers.
+﻿/**
+ * MAKLAID ADVOCATES Schema.org â€” JSON-LD structured data helpers.
  *
  * Each function returns a plain object that can be serialised
  * with JSON.stringify and injected via <script type="application/ld+json">.
@@ -65,7 +65,7 @@ export function serviceSchema(service: {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: `${service.title} — ${ORG_NAME}`,
+    name: `${service.title} â€” ${ORG_NAME}`,
     description: service.description,
     url: `${SITE_URL}/services/${service.slug}`,
     provider: {
@@ -171,3 +171,4 @@ export function breadcrumbSchema(items: BreadcrumbItem[]) {
     })),
   };
 }
+
