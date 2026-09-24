@@ -142,6 +142,31 @@ export const team: TeamMember[] = [
     barAdmissions: [
       'Member, Uganda Christian Lawyers Fraternity (UCLF)',
     ],
-  },];
+  },
+  {
+    slug: 'muwanguzi-benson',
+    name: 'Muwanguzi Benson',
+    title: 'Legal Assistant',
+    photo: '/images/team/benson.jpeg',
+    shortBio:
+      'A dedicated lawyer with a strong interest in legal advocacy, litigation, and dispute resolution.',
+    bio: 'Muwanguzi Benson is a dedicated lawyer with a strong interest in legal advocacy, litigation, and dispute resolution. Committed to upholding the highest standards of professional integrity while striving for excellence throughout his legal career.\n\nBenson seeks to build practical expertise, pursue excellence in the practice of law, and deliver client-focused legal solutions. With expertise in corporate and commercial law, civil litigation, and property law, he brings a commitment to rigorous advocacy and comprehensive legal representation.\n\nBenson is dedicated to advancing access to justice and maintaining the highest standards of professionalism in all client engagements.',
+    practices: [
+      'Corporate and Commercial Law',
+      'Civil Litigation and Dispute Resolution',
+      'Property Law',
+    ],
+    specializations:
+      'Corporate and commercial law, civil litigation and dispute resolution, and property law.',
+    education: [
+      'LLB (Hons) IUIU',
+      'Postgraduate Diploma in Legal Practice (LDC)',
+    ],
+    barAdmissions: [
+      'Member, Uganda Christian Lawyer\'s Fraternity',
+      'Member, Uganda Young Lawyers\' Association',
+    ],
+  },
+];
 
 
